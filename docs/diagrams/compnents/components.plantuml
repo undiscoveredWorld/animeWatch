@@ -1,0 +1,31 @@
+@startuml component
+
+[AnimeList] as animeList
+[Anime] as anime
+[Serieses] as serieses
+
+() "HTTPS" as IHTTPS
+() "Name, description" as IAnime
+() "DB Driver" as dbd
+
+animeList -down-> anime : contains
+anime -down-> serieses : contains
+IAnime -> anime
+
+animeList -right-> IHTTPS
+anime -right-> IHTTPS
+serieses -right-> IHTTPS
+
+database DB{
+    [Anime] as animeDB
+    [Serieses] as seriesesDB
+}
+
+animeList -down-> dbd : askAllAnime
+dbd -down-> animeDB : askAllAnime
+
+anime -down-> dbd : askAllSeries
+anime -down-> dbd : askAllComments
+
+
+@enduml

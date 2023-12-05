@@ -1,0 +1,266 @@
+@startuml class
+
+class Auth {
+    
+}
+
+class Role {
+    - String name
+    - Dictionary<String, Boolean> permissions
+    
+    + Role Role(name)
+    + Role Role(name, permissions)
+
+    + setPermission(String, Boolean)
+
+    + void setName(String)
+    + String getName()
+    + Dictionary<String, Boolean> getPermissions()
+}
+
+class User {
+    - String username
+    - String password
+    - String email
+    - String fullname
+    - String description
+    - File pathToAvatar
+    - Role[] roles
+    - Date creationDate
+    - Date lastSeenDate
+    - Boolean isEmailVerified
+    - Boolean isOnline
+
+    + User User(username, password)
+    + User User(username, password, email)
+    + User User(<all, expect is*, *Date, roles>)
+
+    + {static} Auth autorize(User)
+    - {static} String generateLinkForVerifyEmail(User)
+    - {static} Boolean sendVerifyEmail(User)
+    + {static} Boolean startVerification(User)
+    + {static} Boolean verify(String)
+    + {static} Boolean giveRole(User, Role)
+    + {static} Boolean takeAwayRole(User, Role)
+
+    + void changeAvatar(File)
+
+    + void setPassword(String)
+    + void setEmail(String)
+    + void setFullname(String)
+    + void setDescription(String)
+    + void setOnline(Boolean)
+    + String getUsername()
+    + String getPassword()
+    + String getEmail()
+    + String getFullname()
+    + String getDescription()
+    + File getPathToAvatar()
+    + Role[] getRoles()
+    + Date getCreationDate()
+    + Date getLastSeenDate()
+    + Boolean isEmailVerified()
+    + Boolean isOnline()
+}
+
+class Message {
+    - User sender
+    - User receiver
+    - String body
+
+    + Message Message(sender, receiver)
+    + Message Message(sender, receiver, body)
+
+    + void setBody(String)
+    + User getSender()
+    + User getReceiver()
+    + String getBody()
+}
+
+interface IAnime {
+    Date publicationDate
+    Date previewedDate
+    AnimeStatus animeStatus
+}
+
+class Series {
+    - int n
+    - String name
+    - File pathToSeries
+    - SeasonOfAnime season
+
+    + Series Series(n, season)
+    + Series Series(n, season, name)
+    + Series Series(n, season, name, pathToSeries)
+
+    + void setN(int)
+    + void setName(String)
+    + void setPathToSeries(File)
+    + int getN()
+    + String getName()
+    + File getPathToFile()
+    + SeasonOfAnime getSeason()
+
+}
+
+class SeasonOfAnime {
+    - int n
+    - Anime anime
+    - Season season
+
+    + SeasonOfAnime SeasonOfAnime(n, anime)
+
+    + Series[] getSerieses()
+
+    + void setN(int)
+    + int getN()
+    + Anime getAnime()
+}
+
+class Anime {
+    - User publisher
+    - Date publicationDate
+    - String originalName
+    - String englishName
+    - String russianName
+    - String description
+    - Studio studio
+    - Season seasonOfPublication
+    - Genre[] genres
+    - AnimeTag[] tags
+    - Stirng durationOfSeries
+    - AnimeCategory animeCategory
+    - String ageRestriction
+    
+    + Anime Anime(<all>)
+
+    + SeasonOfAnime[] getSeasons()
+    + Series[] getSerieses()
+    + void addGenre(Genre)
+    + void removeGenre(Genre)
+    + void addTag(AnimeTag)
+    + void removeTag(AnimeTag)
+
+    + void setOriginalName(String)
+    + void setEnglishName(String)
+    + void setRussianName(String)
+    + void setDescription(String)
+    + void setStudio(Studio)
+    + void setSeasonOfPublication(Season)
+    + void setDurationOfSeries(String)
+    + void setAgeRestriction(String)
+    + User getPublisher()
+    + Date getPublicationDate()
+    + String getOriginalName()
+    + String getEnglishName()
+    + String getRussianName()
+    + String getDescription()
+    + Studio getStudio()
+    + Genre[] getGenres()
+    + AnimeTag[] getTags()
+    + String getDurationOfSeries()
+    + AnimeCategory getAnimeCategory()
+    + String getAgeRestriction()
+
+    + Date getPublicationDate()
+}
+
+class AnimeCategory {
+    - String name
+    
+    + AnimeCategory AnimeCategory(name)
+
+    + void setName(String)
+    + String getName()
+
+}
+
+class AnimeTag {
+    - String name
+
+    AnimeTag AnimeTag(name)
+
+    + void setName(String)
+    + String getName()
+}
+
+class Genre {
+    - String name
+
+    Genre Genre(name)
+
+    + void setName(String)
+    + String getName()
+}
+
+class Studio {
+    - String name
+    - String description
+
+    Studio Studio(name)
+    Studio Studio(name, description)
+
+    + void setName(String)
+    + String getName()
+}
+
+class Season {
+    - int year
+    - int timeOfYear
+
+    + Season Season(year, timeOfYear)
+}
+
+enum AnimeStatus {
+    "Previewed",
+    "Realesed"
+    "Ongoing"
+    "Leaved"
+}
+
+class Comment {
+    - User sender
+    - String body
+    - Date publishDate
+    - CommentStatus status
+    - IAnime parent
+
+    + Comment Comment(parent, sender, body)
+    + Comment Comment(parent, sender, body, status)
+
+}
+
+enum CommentStatus {
+    "OnChecking"
+    "Published"
+    "Hidden"
+}
+
+User o-left- Role
+User -down- Auth
+User -left- Message
+User -- Anime
+
+IAnime <|-- Anime
+IAnime <|-- SeasonOfAnime
+IAnime <|-- Series
+
+Anime *-left- SeasonOfAnime
+SeasonOfAnime *-left- Series
+
+Anime *-right- AnimeCategory
+Anime *-right- Genre
+Anime o-right- Studio
+Anime o-right- Season
+Anime *-right- AnimeTag
+Anime o-down- AnimeStatus
+SeasonOfAnime o-down- AnimeStatus
+Series o-down- AnimeStatus
+
+Comment *-- CommentStatus
+Comment -- User
+Anime o-- Comment
+SeasonOfAnime o-- Comment
+Series o-- Comment
+
+@enduml

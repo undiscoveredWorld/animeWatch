@@ -1,0 +1,38 @@
+@startuml usecase
+
+actor Viewer
+actor User
+
+(Get list of anime) as animeList
+
+Viewer --> (Autorize)
+Viewer --> (Create account)
+Viewer -left-> animeList
+(Autorize) <.- (Username, password) : includes
+(Create account) <.- (Username, password) : includes
+
+(Check profile) as profile
+User -> profile
+profile <. (Change username or/and password)
+
+User --> animeList
+animeList <.- (Search anime) : extends
+animeList <.- (Open anime) : extends
+(Open anime) <.- (Show description) : extends
+(Open anime) <.- (Open series) : extends
+(Open anime) <.- (Download anime fully) : extends
+(Open anime) <.- (Return to anime list) : extends
+(Open anime) <.- (Leave comment) : extends
+(Open series) <.- (Show series) : extends
+(Open series) <.- (Return to anime description) : extends
+(Open series) <.- (Download a series) : extends
+(Open series) <.- (Go to next or previous series) : extends
+(Open series) <.- (Leave comment) : extends
+
+
+User -left-> (Send message)
+(Send message) <-left- (Enter message) : includes
+(Return to previous page) -up-> (Send message) : extends
+
+
+@enduml

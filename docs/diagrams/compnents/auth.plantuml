@@ -1,0 +1,20 @@
+@startuml component
+
+[Authorize system] as auth
+[Account] as account
+
+() "Login/password" as IAuth1
+() "HTTPS" as IHTTPS
+
+IAuth1 --> auth
+auth -right-> IHTTPS
+auth -left-> account
+
+database DB{
+    [User] as userDB
+}
+
+auth --> dbd : validatePassword
+dbd -> userDB : validatePassword
+
+@enduml
