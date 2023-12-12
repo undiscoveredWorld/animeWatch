@@ -68,7 +68,9 @@ header .col {
 .search-button button {
     background-color: #DEE1E9;
 }
+/* End of search */
 
+/* Navigation */
 nav {
     border: 2px solid #969696 !important;
     min-height: 150px;
@@ -79,7 +81,9 @@ nav {
     border-bottom: 2px solid #969696 !important;
     height: 28px;
 }
+/* End of navigation */
 
+/* New animes */
 .new-animes {
     background-color: #FFFFFF;
     border: 2px solid #969696 !important;
@@ -106,3 +110,47 @@ nav {
     margin: 0px;
     text-align: right;
 }
+/* End of new animes */
+
+/* Main */
+.main {
+    background-color: #FFFFFF;
+}
+
+.anime {
+    display: flex;
+    flex-wrap: wrap;
+    background: #C6C0EB;
+    border: 2px solid #969696 !important;
+}
+
+.anime-description {
+
+}
+
+.anime h5 {
+    word-break: break-all;
+    inline-size: 180px;
+    overflow: hidden;
+    height: 72px;
+}
+
+.anime .break {
+    height: 0;
+    flex-basis: 100%;
+}
+
+.anime-genres {
+    word-break: break-all;
+    inline-size: 180px;
+    overflow: hidden;
+    height: 45px;
+}
+
+.anime-tags {
+    word-break: break-all;
+    inline-size: 180px;
+    overflow: hidden;
+    height: 45px;
+}
+/* End of main */
