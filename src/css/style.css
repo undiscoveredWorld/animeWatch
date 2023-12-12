@@ -2,16 +2,107 @@
 
 body {
     font-family: 'Inter', sans-serif;
+    background-color: #C0C6C7;
 }
 
+button {
+    border: none;
+    background-color: #D7C1FA;
+}
+
+/* Header */
 header {
-    border: 2px solid #000 !important;
-    height: 80px;
+    border: 1px solid #969696 !important;
+    height: 60px;
+    background-color: #DEE1E9;
 }
 
+header .col-2 {
+    border-right: 1px solid #969696 !important;
+}
+
+header .col {
+    border-right: 1px solid #969696 !important;
+}
 
 .logo span {
     font-size: 36px;
     display: inline;
     vertical-align: middle;
+}
+
+.login span {
+    font-size: 28px;
+    display: inline;
+    vertical-align: middle;
+}
+
+.registration span {
+    font-size: 28px;
+    display: inline;
+    vertical-align: middle;
+}
+/* End of header */
+
+/* Search */
+.search {
+    border: 2px solid #969696 !important;
+    height: 40px;
+}
+
+.search-label {
+    border-right: 2px solid #969696 !important;
+    background-color: #DEE1E9;
+}
+
+.search-field {
+    border-right: 2px solid #969696 !important;
+}
+
+.search-label span {
+    font-size: 24px;
+    display: inline;
+    vertical-align: middle;
+}
+
+.search-button button {
+    background-color: #DEE1E9;
+}
+
+nav {
+    border: 2px solid #969696 !important;
+    min-height: 150px;
+    background-color: #FFFFFF;
+}
+
+.nav-element {
+    border-bottom: 2px solid #969696 !important;
+    height: 28px;
+}
+
+.new-animes {
+    background-color: #FFFFFF;
+    border: 2px solid #969696 !important;
+    min-height: 150px;
+}
+
+.anime-picture {
+    margin: 8px 5px 8px 8px;
+}
+
+.new-animes h5 {
+    margin-top: 8px;
+    word-break: break-all;
+    inline-size: 170px;
+    overflow: hidden;
+}
+
+.series {
+    align-self: self-start;
+    margin: 0px 10px 0px 40px;
+}
+
+.season {
+    margin: 0px;
+    text-align: right;
 }

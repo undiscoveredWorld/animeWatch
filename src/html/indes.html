@@ -8,15 +8,101 @@
     <title>Home</title>
 </head>
 <body>
+    <!-- Start of header -->
     <header class="container-fluid m-0 w-100 p-0 border-dark">
         <div class="row m-0 p-0 h-100">
-            <div class="logo col-2 h-100 w-22 p-0 m-0 border text-center align-middlejustify-content-start">
+            <div class="logo col-2 h-100 p-0 m-0 border text-center align-middlejustify-content-start">
                 <span class="pt-1">
                     Logo
                 </span>
             </div>
-            
+            <div class="col"></div>
+            <div class="login col-2 h-100 p-1 m-0 border text-center">
+                <span class="pt-4">
+                    Login
+                </span>
+            </div>
+            <div class="registration col-2 h-100 p-1 m-0 border text-center">
+                <span class="pt-4">
+                    Registration
+                </span>
+            </div>
         </div>
     </header>
+    <!-- End of header -->
+
+    <!-- Search -->
+    <form class="search container mt-5" method="post">
+        <div class="row">
+            <div class="search-label col-2 text-center">
+                <span>
+                    Search:
+                </span>
+            </div>
+            <div class="search-field col p-0 m-0">
+                <input class="w-100 h-100" name="searchRequest" autocomplete="off">
+
+                </input>
+            </div>
+            <div class="search-button col-2 p-0 m-0">
+                <button class="w-100 h-100" onclick="submit">Search</button>
+            </div>
+
+        </div>
+    </form>
+    <!-- End of search -->
+
+    <div class="container mt-5 p-0">
+        <div class="row">
+            <div class="col-3">
+                <!-- nav -->
+                <nav class="container p-0">
+                    <div class="col p-0">
+                        <!-- nav-element-->
+                        <div class="nav-element row text-center w-100 p-0 m-0 border">
+                            <snap class="text-center w-100">
+                                Ongoing
+                            </snap>
+                        </div>
+                        <!-- End of nav-element -->
+
+                        <!-- nav-element-->
+                        <div class="nav-element row text-center w-100 p-0 m-0 border">
+                            <snap class="text-center w-100">
+                                Ongoing
+                            </snap>
+                        </div>
+                        <!-- End of nav-element -->
+                    </div>
+                </nav>
+                <!-- End of nav-->
+
+                <div class="new-animes container mt-3 p-0 border">
+                    <div class="col">
+                        <div class="row border">
+                            <img class="anime-picture" src="../assets/png/AnimePicture.png">
+                            <h5>Anime name name namesd sdafsdafd sfaffsdaffsd</h5>
+                            <p class="series">1-8 series</p>
+                            <p class="season">1 season</p>
+                        </div>
+                        <div class="row border">
+                            <img class="anime-picture" src="../assets/png/AnimePicture.png">
+                            <h5>Anime name name namesd sdafsdafd sfaffsdaffsd</h5>
+                            <p class="series">1-8 series</p>
+                            <p class="season">1 season</p>
+                        </div>
+                        <div class="row border">
+                            <img class="anime-picture" src="../assets/png/AnimePicture.png">
+                            <h5>Anime name name namesd sdafsdafd sfaffsdaffsd</h5>
+                            <p class="series">1-8 series</p>
+                            <p class="season">1 season</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
 </body>
 </html>
