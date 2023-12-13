@@ -6,24 +6,81 @@ body {
 }
 
 button {
-    border: none;
+    border: 1px solid #969696 !important;
     background-color: #D7C1FA;
+}
+
+.extended_search_block {
+    background-color: #FFFFFF;
+    border: 1px solid #969696 !important;
+}
+
+.extended_search_block select {
+    width: 9vw;
+    background-color: #D7C1FA;
+    border: 1px solid #969696 !important;
+}
+
+.extended_search_block button {
+    width: 9vw;
+}
+
+.extended_search_block label {
+    text-align: end;
+    vertical-align: middle;
+}
+
+.tag-selector {
+    visibility: hidden;
+    width: 35vw;
+    height: 80vh;
+    position: absolute;
+    background-color: #FFFFFF;
+    border: 1px solid #969696 !important;
+    z-index: 1100;
+    margin-top: -28px;
+}
+
+.tag-selector .white {
+    background-color: #FFFFFF;
+}
+
+.tag-selector .green {
+    background-color: #D7C1FA;
+}
+
+.tag-selector .red {
+    background-color: #fac1c1;
+}
+
+.tag-selector .tag {
+    display: flex;
+}
+
+.radio-button {
+    border: 1px solid #969696 !important;
+    border-radius: 45px;
+    width: 20px;
+    height: 20px;
+    white-space: nowrap;
+}
+
+#search-button {
+    margin: auto;
+    width: 9vw;
 }
 
 /* Main */
 .main {
     background-color: #FFFFFF;
+    border: 1px solid #969696 !important;
 }
 
 .anime {
     display: flex;
     flex-wrap: wrap;
     background: #C6C0EB;
-    border: 2px solid #969696 !important;
-}
-
-.anime-description {
-
+    border: 1px solid #969696 !important;
 }
 
 .anime h5 {
