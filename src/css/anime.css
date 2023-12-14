@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #C0C6C7;
+}
+
+button {
+    border: 1px solid #969696 !important;
+    background-color: #D7C1FA;
+}
+
+select {
+    background-color: #D7C1FA;
+    border: 1px solid #969696 !important;
+    text-align: center;
+}
+
+/* Main */
+.main {
+    background-color: #FFFFFF;
+}
+
+.main h2 {
+    word-break: break-all;
+    inline-size: 350px;
+    overflow: hidden;
+    height: 76px;
+}
+
+#other-names {
+    word-break: break-all;
+    inline-size: 350px;
+    overflow: hidden;
+    height: 76px;
+    font-size: 12px;
+}
+
+.anime-description {
+    font-size: 20px;
+}
+
+.screenshots {
+    border: 1px solid #969696 !important;
+}
+
+.screenshots img {
+    border: 1px solid #969696 !important;
+}
+
+.season button {
+    min-width: 119px;
+}
+
+.main .series {
+    border: 1px solid #969696 !important;
+    width: 90%;
+}
+
+.main .series .row {
+    border: 1px solid #969696 !important;
+    background-color: #D7C1FA;
+    text-align: center;
+}
+
+.main .series-element p{
+    border: 1px solid #969696 !important;
+}
+
+.main .series-free-space {
+    border: 1px solid #969696 !important;
+    background-color: #fff;
+    width: 100%;
+    min-height: 300px;
+}
+
+.child {
+    margin: 12px 6px 12px 6px !important;
+}
+
+.comment {
+    border: 1px solid #969696 !important;
+    background-color: #E7DAFB;
+}
+
+.role {
+    font-size: 12px;
+}
+
+#comments-header{
+    height: 38px;
+}
+/* End of main */
