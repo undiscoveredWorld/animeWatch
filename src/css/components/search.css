@@ -1,23 +1,13 @@
-.search {
-    border: 1px solid #969696 !important;
+#search {
     height: 40px;
 }
 
-.search-label {
-    border-right: 1px solid #969696 !important;
+#search-label {
     background-color: #DEE1E9;
-}
-
-.search-field {
-    border-right: 1px solid #969696 !important;
-}
-
-.search-label span {
     font-size: 24px;
-    display: inline;
-    vertical-align: middle;
 }
 
-.search-button button {
+#search #search-button {
     background-color: #DEE1E9;
+    font-size: 24px;
 }

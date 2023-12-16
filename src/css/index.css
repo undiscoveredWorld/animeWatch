@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #C0C6C7;
-}
-
-button {
-    border: 1px solid #969696 !important;
-    background-color: #D7C1FA;
-}
-
 /* Main */
 .main {
     background-color: #FFFFFF;
@@ -19,7 +9,6 @@ button {
     display: flex;
     flex-wrap: wrap;
     background: #C6C0EB;
-    border: 1px solid #969696 !important;
 }
 
 .anime h5 {
@@ -35,7 +24,7 @@ button {
 }
 
 .anime-genres {
-    word-break: break-all;
+    word-break: keep-all;
     inline-size: 180px;
     overflow: hidden;
     height: 45px;

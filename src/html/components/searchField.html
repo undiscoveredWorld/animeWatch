@@ -1,18 +1,13 @@
-<form class="search container mt-5 p-0" method="post">
-    <div class="row m-0">
-        <div class="search-label col-2 text-center">
-            <span>
-                Search:
-            </span>
-        </div>
-        <div class="search-field col p-0 m-0">
+<form class="container mt-5 p-0 border" id="search" method="post">
+    <div class="row h-100 m-0">
+        <span class="col-2 p-0 text-center border-rigth" id="search-label">
+            Search:
+        </span>
+        <div class="col p-0">
             <input class="w-100 h-100" name="searchRequest" autocomplete="off">
 
             </input>
         </div>
-        <div class="search-button col-2 p-0 m-0">
-            <button class="w-100 h-100" onclick="submit">Search</button>
-        </div>
-
+        <button class="col-2 h-100 p-0" id="search-button" onclick="submit">Search</button>
     </div>
 </form>

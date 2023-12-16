@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #C0C6C7;
-}
-
-button {
-    border: 1px solid #969696 !important;
-    background-color: #D7C1FA;
-}
-
 select {
     background-color: #D7C1FA;
     border: 1px solid #969696 !important;
@@ -36,10 +26,11 @@ select {
     font-size: 12px;
 }
 
-.anime-description {
+#anime-description {
     font-size: 20px;
 }
 
+/* Screenshots */
 .screenshots {
     border: 1px solid #969696 !important;
 }
@@ -47,24 +38,17 @@ select {
 .screenshots img {
     border: 1px solid #969696 !important;
 }
-
-.season button {
-    min-width: 119px;
-}
+/* End of screenshots */
 
 .main .series {
     border: 1px solid #969696 !important;
     width: 90%;
 }
 
-.main .series .row {
+#series-selector {
     border: 1px solid #969696 !important;
     background-color: #D7C1FA;
     text-align: center;
-}
-
-.main .series-element p{
-    border: 1px solid #969696 !important;
 }
 
 .main .series-free-space {
@@ -72,10 +56,6 @@ select {
     background-color: #fff;
     width: 100%;
     min-height: 300px;
-}
-
-.child {
-    margin: 12px 6px 12px 6px !important;
 }
 
 .comment {
@@ -87,7 +67,7 @@ select {
     font-size: 12px;
 }
 
-#comments-header{
+#comments-header {
     height: 38px;
 }
 /* End of main */

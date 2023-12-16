@@ -1,10 +1,8 @@
 nav {
     border: 1px solid #969696 !important;
-    min-height: 150px;
     background-color: #FFFFFF;
 }
 
 .nav-element {
-    border-bottom: 1px solid #969696 !important;
     height: 28px;
 }

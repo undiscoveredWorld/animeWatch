@@ -1,15 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: #C0C6C7;
-}
-
-button {
-    border: 1px solid #969696 !important;
-    background-color: #D7C1FA;
-}
-
+/* Extended search */
 .extended_search_block {
     background-color: #FFFFFF;
     border: 1px solid #969696 !important;
@@ -41,6 +32,7 @@ button {
     margin-top: -28px;
 }
 
+/* Tag selector */
 .tag-selector .white {
     background-color: #FFFFFF;
 }
@@ -65,9 +57,12 @@ button {
     white-space: nowrap;
 }
 
+/* End of tag-selector */
+
 #search-button {
     margin: auto;
     width: 9vw;
+    height: 28px;
 }
 
 /* Main */

@@ -1,31 +1,4 @@
 header {
-    border: 1px solid #969696 !important;
     height: 60px;
     background-color: #DEE1E9;
-}
-
-header .col-2 {
-    border-right: 1px solid #969696 !important;
-}
-
-header .col {
-    border-right: 1px solid #969696 !important;
-}
-
-.logo span {
-    font-size: 36px;
-    display: inline;
-    vertical-align: middle;
-}
-
-.login span {
-    font-size: 28px;
-    display: inline;
-    vertical-align: middle;
-}
-
-.registration span {
-    font-size: 28px;
-    display: inline;
-    vertical-align: middle;
 }

@@ -1,26 +1,18 @@
-.new-animes {
-    background-color: #FFFFFF;
-    border: 1px solid #969696 !important;
-    min-height: 150px;
-}
-
-.anime-picture {
+#new-animes .anime-picture {
     margin: 8px 5px 8px 8px;
 }
 
-.new-animes h5 {
+#new-animes h5 {
     margin-top: 8px;
     word-break: break-all;
     inline-size: 170px;
     overflow: hidden;
 }
 
-.new-animes .series {
-    align-self: self-start;
+p.series {
     margin: 0px 10px 0px 40px;
 }
 
-.season {
+p.season {
     margin: 0px;
-    text-align: right;
 }

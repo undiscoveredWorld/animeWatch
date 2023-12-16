@@ -1,0 +1,25 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #C0C6C7;
+}
+
+button {
+    border: 1px solid #969696 !important;
+    background-color: #D7C1FA;
+}
+
+.border {
+    border: 1px solid #969696 !important;
+}
+
+.border-right {
+    border-right: 1px solid #969696 !important;
+}
+.border-bottom {
+    border-bottom: 1px solid #969696 !important;
+}
+
+.sidebar-block {
+    background-color: #fff;
+    min-height: 150px;
+}
