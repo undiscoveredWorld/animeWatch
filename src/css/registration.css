@@ -1,0 +1,36 @@
+.main {
+    background-color: #fff;
+    
+}
+
+.main label {
+    text-align: end;
+    font-size: 20px;
+}
+
+.text-area {
+    min-height: 180px;
+}
+
+.avatar-choicer {
+    background-color: #fff;
+    position: absolute;
+    width: 310px;
+    height: 216px;
+    margin-top: -28px;
+    visibility: hidden;
+}
+
+.avatar-choicer .active-tab {
+    background-color: #D7C1FA;
+}
+
+.avatar-choicer #standard-choice {
+    visibility: hidden;
+    position: absolute;
+}
+
+.avatar-choicer #from-file-choice {
+    visibility: hidden;
+    position: absolute;
+}
