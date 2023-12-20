@@ -1,0 +1,17 @@
+.block #online-status {
+    font-size: 20px;
+    text-align: center;
+}
+
+.block #role {
+    font-size: 14px;
+    text-align: center;
+}
+
+#profile-content p {
+    font-size: 18px;
+}
+
+#profile-content #about-me {
+    height: 400px;
+}
