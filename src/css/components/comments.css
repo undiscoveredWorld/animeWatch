@@ -1,0 +1,12 @@
+.comment {
+    border: 1px solid #969696 !important;
+    background-color: #E7DAFB;
+}
+
+.role {
+    font-size: 12px;
+}
+
+#comments-header {
+    height: 38px;
+}

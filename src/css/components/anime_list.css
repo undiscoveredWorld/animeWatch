@@ -1,12 +1,8 @@
-/* Main */
-.main {
-    background-color: #FFFFFF;
-}
-
 .anime {
     display: flex;
     flex-wrap: wrap;
     background: #C6C0EB;
+    border: 1px solid #969696 !important;
 }
 
 .anime h5 {
@@ -22,7 +18,7 @@
 }
 
 .anime-genres {
-    word-break: keep-all;
+    word-break: break-all;
     inline-size: 180px;
     overflow: hidden;
     height: 45px;
@@ -34,4 +30,3 @@
     overflow: hidden;
     height: 45px;
 }
-/* End of main */

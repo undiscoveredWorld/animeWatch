@@ -7,21 +7,29 @@
     <link rel="stylesheet" href="../css/generic.css">
     <link rel="stylesheet" href="../css/registration.css">
     <link rel="stylesheet" href="../css/components/header.css">
+    <link rel="stylesheet" href="../css/components/avatar_choicer.css">
     <title>Home</title>
 </head>
 <body>
     <!-- Start of header -->
     <header class="container-fluid m-0 w-100 p-0 border">
         <div class="row m-0 p-0 h-100" id="logo">
-            <div class="col-2 p-0 m-0 border-right">
-                <h2 class="m-0 p-2 text-center">Logo</h2>
-            </div>
+            <a href="index.html" class="col-2 p-2 m-0 border-right">
+                <h2 class="text-center">Logo</h2>
+            </a>            
+
             <div class="col border-right" id="free-col"></div>
+
             <div class="col-2 p-1 m-0 border-right">
-                <h3 class="m-0 p-2 text-center">Login</h3>
+                <a href="login.html">
+                    <h3 class="m-0 p-2 text-center">Login</h3>
+                </a>
             </div>
+
             <div class="col-2 p-1 m-0">
-                <h3 class="m-0 p-2 text-center">Registration</h3>
+                <a href="registration.html">
+                    <h3 class="m-0 p-2 text-center">Registration</h3>
+                </a>
             </div>
         </div>
     </header>
@@ -32,7 +40,7 @@
 
             <div class="col"></div>
             <!-- Main block-->
-            <div class="main col-6 mb-5 p-0 border">
+            <div class="block col-6 mb-5 p-0 border">
                 <div class="container my-5 p-0">
                     <div class="row m-0">
                         <h2 class="w-100 text-center">Registration</h2>
@@ -85,12 +93,14 @@
 
                             <div class="row mx-5 my-2">
                                 <div class="col-4 p-0">
-                                    <label for="choice" class="w-100 m-0 text-end">
+                                    <label for="avatar-choice" class="w-100 m-0 text-end">
                                         Avatar:
                                     </label>
                                 </div>
                                 <div class="col-6 ml-5 p-0">
-                                    <button class="w-50" id="choice">Choice</button>
+                                    <button class="w-50" id="avatar-choice">Choice</button>
+                                    
+                                    <!-- Avatar choicer -->
                                     <div class="avatar-choicer border">
                                         <div class="container p-0 m-0">
                                             <div class="row p-0 m-0">
@@ -98,6 +108,7 @@
                                                 <div class="col text-center border-bottom" id="from-file-tab">From file</div>
                                             </div>
                                             <div class="row m-0 h-100">
+                                                <!-- Standard choice -->
                                                 <div class="container m-0 p-0" id="standard-choice">
                                                     <div class="row m-0 p-0">
                                                         <img src="../assets/png/Avatars/Avatar 1.png" alt="" class="col p-0 m-0">
@@ -121,17 +132,22 @@
                                                         <img src="../assets/png/Avatars/Avatar 14.png" alt="" class="col p-0 m-0">
                                                     </div>
                                                 </div>
+                                                <!-- End of standard choice -->
+
+                                                <!-- From file choice -->
                                                 <div class="container m-0 p-0" id="from-file-choice">
                                                     <div class="row m-0 mx-3 p-0 mt-3">
                                                         <label class="m-0" for="choice-button">Choice file: </label>
-                                                        <button class="p-0 m-0 ml-4 w-50" choice-button">Choice</button>
+                                                        <button class="p-0 m-0 ml-4 w-50" id="choice-button">Choice</button>
                                                     </div>
                                                     <p class="row m-0 mx-3 mt-1 p-0" id="avatar-using-permission">You may use this avatar</p>
                                                     <p class="row m-0 mx-3 mt-5 p-0">Your file must be ...</p>
                                                 </div>
+                                                <!-- End of from file choice -->
                                             </div>
                                         </div>
                                     </div>
+                                    <!-- End of avatar choicer -->
                                 </div>
                             </div>
 

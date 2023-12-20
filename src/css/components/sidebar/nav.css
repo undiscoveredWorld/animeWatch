@@ -6,3 +6,12 @@ nav {
 .nav-element {
     height: 28px;
 }
+
+nav a {
+    color: #000;
+    text-decoration: none;
+}
+nav a:hover {
+    color: #000;
+    text-decoration: none;
+}

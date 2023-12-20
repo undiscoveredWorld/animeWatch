@@ -7,17 +7,6 @@ select {
 }
 
 /* Main */
-.main {
-    background-color: #FFFFFF;
-}
-
-.main h2 {
-    word-break: break-all;
-    inline-size: 350px;
-    overflow: hidden;
-    height: 76px;
-}
-
 #other-names {
     word-break: break-all;
     inline-size: 350px;
@@ -28,46 +17,5 @@ select {
 
 #anime-description {
     font-size: 20px;
-}
-
-/* Screenshots */
-.screenshots {
-    border: 1px solid #969696 !important;
-}
-
-.screenshots img {
-    border: 1px solid #969696 !important;
-}
-/* End of screenshots */
-
-.main .series {
-    border: 1px solid #969696 !important;
-    width: 90%;
-}
-
-#series-selector {
-    border: 1px solid #969696 !important;
-    background-color: #D7C1FA;
-    text-align: center;
-}
-
-.main .series-free-space {
-    border: 1px solid #969696 !important;
-    background-color: #fff;
-    width: 100%;
-    min-height: 300px;
-}
-
-.comment {
-    border: 1px solid #969696 !important;
-    background-color: #E7DAFB;
-}
-
-.role {
-    font-size: 12px;
-}
-
-#comments-header {
-    height: 38px;
 }
 /* End of main */

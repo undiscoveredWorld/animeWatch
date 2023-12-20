@@ -2,3 +2,12 @@ header {
     height: 60px;
     background-color: #DEE1E9;
 }
+
+header a h2, h3 {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}

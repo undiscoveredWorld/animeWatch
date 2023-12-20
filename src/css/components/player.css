@@ -1,0 +1,14 @@
+#anime .player {
+    width: 90%;
+}
+
+#series-selector {
+    background-color: #D7C1FA;
+    text-align: center;
+}
+
+#anime .series-free-space {
+    background-color: #fff;
+    width: 100%;
+    min-height: 300px;
+}
