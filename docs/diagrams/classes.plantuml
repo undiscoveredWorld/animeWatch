@@ -5,6 +5,7 @@ class Auth {
 }
 
 class Role {
+    - int id
     - String name
     - Dictionary<String, Boolean> permissions
     
@@ -14,6 +15,7 @@ class Role {
     + setPermission(String, Boolean)
 
     + void setName(String)
+    + int getID()
     + String getName()
     + Dictionary<String, Boolean> getPermissions()
 }
@@ -23,9 +25,9 @@ class User {
     - String password
     - String email
     - String fullname
-    - String description
+    - String aboutMe
     - File pathToAvatar
-    - Role[] roles
+    - Role role
     - Date creationDate
     - Date lastSeenDate
     - Boolean isEmailVerified
@@ -33,15 +35,13 @@ class User {
 
     + User User(username, password)
     + User User(username, password, email)
-    + User User(<all, expect is*, *Date, roles>)
+    + User User(<all, expect is*, *Date, role>)
 
     + {static} Auth autorize(User)
     - {static} String generateLinkForVerifyEmail(User)
     - {static} Boolean sendVerifyEmail(User)
     + {static} Boolean startVerification(User)
     + {static} Boolean verify(String)
-    + {static} Boolean giveRole(User, Role)
-    + {static} Boolean takeAwayRole(User, Role)
 
     + void changeAvatar(File)
 
@@ -50,31 +50,18 @@ class User {
     + void setFullname(String)
     + void setDescription(String)
     + void setOnline(Boolean)
+    + void setRole(Role)
     + String getUsername()
     + String getPassword()
     + String getEmail()
     + String getFullname()
     + String getDescription()
     + File getPathToAvatar()
-    + Role[] getRoles()
+    + Role getRole()
     + Date getCreationDate()
     + Date getLastSeenDate()
     + Boolean isEmailVerified()
     + Boolean isOnline()
-}
-
-class Message {
-    - User sender
-    - User receiver
-    - String body
-
-    + Message Message(sender, receiver)
-    + Message Message(sender, receiver, body)
-
-    + void setBody(String)
-    + User getSender()
-    + User getReceiver()
-    + String getBody()
 }
 
 interface IAnime {

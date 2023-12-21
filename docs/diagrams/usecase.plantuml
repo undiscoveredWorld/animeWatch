@@ -5,34 +5,29 @@ actor User
 
 (Get list of anime) as animeList
 
-Viewer --> (Autorize)
-Viewer --> (Create account)
+Viewer --> (Login)
+Viewer --> (Regisration)
 Viewer -left-> animeList
-(Autorize) <.- (Username, password) : includes
-(Create account) <.- (Username, password) : includes
+(Login) <.- (Username, password) : includes
+(Regisration) <.- (Username, password) : includes
 
 (Check profile) as profile
 User -> profile
 profile <. (Change username or/and password)
 
 User --> animeList
+
 animeList <.- (Search anime) : extends
+(Search anime) <.- (Genres, tags, type, status) : extends
+(Search anime) <.- (Open anime) : extends
+
 animeList <.- (Open anime) : extends
 (Open anime) <.- (Show description) : extends
 (Open anime) <.- (Open series) : extends
-(Open anime) <.- (Download anime fully) : extends
 (Open anime) <.- (Return to anime list) : extends
-(Open anime) <.- (Leave comment) : extends
-(Open series) <.- (Show series) : extends
-(Open series) <.- (Return to anime description) : extends
-(Open series) <.- (Download a series) : extends
-(Open series) <.- (Go to next or previous series) : extends
-(Open series) <.- (Leave comment) : extends
-
-
-User -left-> (Send message)
-(Send message) <-left- (Enter message) : includes
-(Return to previous page) -up-> (Send message) : extends
+(Open anime) <.- (Leave commen logined only) : extends
+(Open anime) <.- (Show comments) : extends
+(Show comments) <.- (Go to profile) : extends
 
 
 @enduml

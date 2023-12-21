@@ -1,0 +1,143 @@
+@startuml entity
+
+entity User {
+
+}
+
+entity AnimeCategory {
+    *id : number<<generated>>
+    --
+    *name : text
+}
+
+entity AnimeTag {
+    *id : number<<generated>>
+    --
+    *name : text
+}
+
+entity Genre {
+    *id : number<<generated>>
+    --
+    *name : text
+}
+
+entity Studio {
+    *id : number<<generated>>
+    --
+    *name : text
+    *description : text
+}
+
+entity Season {
+    *id : number<<generated>>
+    --
+    *year : number
+    *timeOfYear : number
+}
+
+enum AnimeStatus {
+    "Previewed",
+    "Realesed"
+    "Ongoing"
+    "Leaved"
+}
+
+entity Anime {
+    *id : number<<generated>>
+    --
+    *publisher : User
+    *publicationDate : date
+    *originalName : text
+    *englishName : text   
+    *description : text
+    *studio : Studio
+    *season : Season
+    ' tags
+    *durationOfSeries : text
+    *category : AnimeCategory
+    *ageRestriction : text
+}
+
+entity GenryAnimeRelation {
+    *id : number<<generated>>
+    --
+    *anime : Anime
+    *genre : Genre
+}
+
+entity TagAnimeRelation {
+    *id : number<<generated>>
+    --
+    *anime : Anime
+    *tag : AnimeTag
+}
+
+entity SeasonOfAnime {
+    *id : number<<generated>>
+    --
+    *numberOfOrder : number
+    *anime : Anime
+}
+
+entity Series {
+    *id : number<<generated>>
+    --
+    *numberOfOrder : number
+    *season : SeasonOfAnime
+}
+
+entity Translate {
+    *id : number<<generated>>
+    --
+    *name : text
+    *series : Series
+}
+
+entity Player {
+    *id : number<<generated>>
+    --
+    *name : text
+    *link : text
+    *translate : Translate
+}
+
+enum CommentStatus {
+    "OnChecking"
+    "Published"
+    "Hidden"
+}
+
+entity Comment {
+    *id : number<<generated>>
+    --
+    *sender : User
+    *body : text
+    *publicationDate : date
+    *status : CommentStatus
+    *parent : Anime
+}
+
+Anime }o-up-|| User
+
+Anime }|--|| AnimeCategory
+Anime }o--|| Studio
+Anime }o--|| Season
+Anime }o--|| AnimeStatus
+
+TagAnimeRelation }o-up-|| Anime
+TagAnimeRelation }o-down-|| AnimeTag 
+
+GenryAnimeRelation }o-up-|| Anime
+GenryAnimeRelation }o-down-|| Genre
+
+Anime }o-left-|| SeasonOfAnime
+SeasonOfAnime }o-down-|| Series
+Series }|-down-|| Translate
+Translate }|-down-|| Player
+
+Comment }o-left-|| Anime
+Comment }o-up-|| User
+Comment }o-right-|| CommentStatus
+
+@enduml
