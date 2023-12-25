@@ -1,8 +1,12 @@
-from fastapi import FastAPI
+import sys
+
+from fastapi import FastAPI, Depends
+from fastapi.staticfiles import StaticFiles
+
+from routrers import render
 
 app = FastAPI()
 
+app.mount("/static", StaticFiles(directory="/home/arch/Programs/golang/animeWatch/src/backend/views/static"), name="static")
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+app.include_router(render.router)

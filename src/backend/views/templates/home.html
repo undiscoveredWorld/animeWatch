@@ -1,0 +1,29 @@
+{% extends '/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/components/searchField.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/components/sidebar/nav.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/components/sidebar/new_animes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/components/anime_list.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% include '/components/searchField.html' %}
+    <div class="container my-5 p-0">
+        <div class="row m-0">
+            <aside class="col-3 pl-0">
+                {% include '/components/sidebar/nav.html' %}
+                {% include '/components/sidebar/new_animes.html' %}
+            </aside>
+
+            <!-- Main block-->
+            <div class="block col p-0 mr-0 border">
+                <div class="container my-5 p-0">
+                    {% include '/components/anime_list.html' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
