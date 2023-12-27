@@ -1,0 +1,88 @@
+{% extends '/base.html' %}
+
+{% block title %}Anime{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/anime.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/searchField.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/sidebar/nav.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/sidebar/new_animes.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/player.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/comments.css') }}">
+{% endblock %}
+
+{% block body %}
+{% include '/components/searchField.html' %}
+<div class="container my-5 p-0">
+    <div class="row m-0">
+        <aside class="col-3 pl-0">
+            {% include '/components/sidebar/nav.html' %}
+            {% include '/components/sidebar/new_animes.html' %}
+        </aside>
+
+        <!-- Main block-->
+        <div class="block col p-0 mr-0 border" id="anime">
+            <div class="container my-5 p-0">
+                <!-- Anime description-->
+                <p class="row mx-5 mb-3">Publisher: user, publication date: 20-15-2023</p>
+                <div class="row mt-3 mx-0">
+                    <div class="col ml-5 p-0">
+                        <img src="{{ url_for('static', path='/assets/png/AnimePictureVeryBig.png') }}" width="310" height="350">
+                    </div>
+                    <div class="col-6 ml-3 p-0">
+                        <h2>Anime name</h2>
+                        <p class="mb-1" id="other-names">(English name/ Japanese name)</p>
+                        <p class="mb-1">Type: serial</p>
+                        <p class="mb-1">Status: realized</p>
+                        <p class="mb-1">Seasons: 2</p>
+                        <p class="mb-1">Series: 24</p>
+                        <p class="mb-1">Studio: AWorks</p>
+                    </div>
+                </div>
+                <div class="row m-5" id="anime-description">
+                    <p>
+                        "Death Note" is a captivating story about Light Yagami, a high school student who discovers a mysterious notebook called the Death Note. If you write the name of a person in the notebook, they will die within a certain amount of time. Light starts using the notebook to kill criminals and people he doesn't like. However, he soon realizes that it's not as easy as it seems and starts questioning his actions.
+                        <br/>
+                        <br/>
+                        As the story progresses, Light encounters various characters who each have their own motivations and goals. He meets L, a mysterious girl who knows about the Death Note and tries to help him understand the error of his ways. At the same time, Light becomes a target for Kirio, another student who wants to obtain the Death Note for himself.
+                        <br/>
+                        <br/>
+                        The plot of "Death Note" is filled with intrigue, tension, and unexpected twists. It forces the viewer to think about the nature of evil and morality, and how far we are willing to go for our own gain. Ultimately, Light must make a choice between using the Death Note for revenge and saving the world from evil or giving it up and trying to change his fate.
+                    </p>
+                </div>
+                <!-- End of anime description-->
+                <!-- Screenshots -->
+                <div class="row m-5 w-auto">
+                    <div class="screenshots container p-0 my-auto w-auto">
+                        <div class="row m-0 w-auto">
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot1.png') }}" alt="">
+                            </div>
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot2.png') }}" alt="">
+                            </div>
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot3.png') }}" alt="">
+                            </div>
+                        </div>
+                        <div class="row m-0 w-auto">
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot4.png') }}" alt="">
+                            </div>
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot5.png') }}" alt="">
+                            </div>
+                            <div class="col-auto p-0">
+                                <img class="border" src="{{ url_for('static', path='/assets/png/Screenshot6.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of screenshots -->
+                {% include '/components/player.html' %}
+                {% include '/components/comments.html' %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends '/base.html' %}
+
+{% block title %}Anime{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5 p-0">
+    <div class="row m-0">
+
+        <div class="col"></div>
+        <!-- Main block-->
+        <div class="block col-6 mb-5 p-0 border">
+            <div class="container my-5 p-0">
+                <div class="row m-0">
+                    <h2 class="w-100 text-center">Login</h2>
+                </div>
+                <div class="row m-0 mt-1">
+                    <form class="container m-0 p-0">
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="username-email" class="w-100 m-0 text-end">
+                                    Username/email:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100" id="username-email" name="username-email" type="text">
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="password" class="w-100 m-0 text-end">
+                                    Password:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100" id="password" name="password" type="password">
+                            </div>
+                        </div>
+                        <!-- End of password -->
+
+                        <!-- Login button -->
+                        <div class="row mx-5 mt-5">
+                            <div class="col"></div>
+
+                            <button class="col">Login</button>
+
+                            <div class="col"></div>
+                        </div>
+                        <!-- End of login button -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End of main block -->
+        <div class="col"></div>
+>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends '/base.html' %}
+
+{% block title %}Anime{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" href="{{ url_for('static', path='/css/registration.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', path='/css/components/avatar_choicer.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="container my-5 p-0">
+    <div class="row m-0">
+
+        <div class="col"></div>
+        <!-- Main block-->
+        <div class="block col-6 mb-5 p-0 border">
+            <div class="container my-5 p-0">
+                <div class="row m-0">
+                    <h2 class="w-100 text-center">Registration</h2>
+                </div>
+                <div class="row m-0 mt-1">
+                    <form class="container m-0 p-0">
+                        <!-- Username -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="username" class="w-100 m-0 text-end">
+                                    Username:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100" id="username" name="username" type="text">
+                            </div>
+                        </div>
+                        <!-- End of username -->
+
+                        <!-- Password -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="password" class="w-100 m-0 text-end">
+                                    Password:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100" id="password" name="password" type="password">
+                            </div>
+                        </div>
+                        <!-- End of password -->
+
+                        <!-- Email -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="email" class="w-100 m-0 text-end">
+                                    Email:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100" id="email" name="email" type="text">
+                            </div>
+                        </div>
+                        <!-- End of email -->
+
+                        <!-- About me -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="about-me" class="w-100 m-0 text-end">
+                                    About me:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <input class="w-100 text-area" id="about-me" name="about-me" type="text">
+                            </div>
+                        </div>
+                        <!-- End of about me -->
+
+                        <!-- Avatar -->
+                        <div class="row mx-5 my-2">
+                            <div class="col-4 p-0">
+                                <label for="avatar-choice" class="w-100 m-0 text-end">
+                                    Avatar:
+                                </label>
+                            </div>
+                            <div class="col-6 ml-5 p-0">
+                                <button class="w-50" id="avatar-choice">Choice</button>
+
+                                {% include '/components/avatar_choicer.html' %}
+                            </div>
+                        </div>
+                        <!-- End of avatar -->
+
+                        <!-- Captcha -->
+                        <div class="row mt-3 mx-0">
+                            <div class="col"></div>
+                            <img src="{{ url_for('static', path='/assets/png/Captcha.png') }}" alt="" height="97px" class="col-4 m-0 p-0 border">
+                            <div class="col"></div>
+                        </div>
+
+                        <div class="row mx-5 mt-4">
+                            <div class="col"></div>
+
+                            <div class="col-3 p-0">
+                                <label for="captcha" class="w-100 text-end">
+                                    Enter code:
+                                </label>
+                            </div>
+                            <div class="col-3 ml-3 p-0">
+                                <input class="w-100" id="captcha" name="about-me" type="text">
+                            </div>
+
+                            <div class="col"></div>
+                        </div>
+                        <!-- End of captcha -->
+
+                        <!-- Finish button -->
+                        <div class="row mx-5 mt-5">
+                            <div class="col"></div>
+
+                            <button class="col">Finish</button>
+
+                            <div class="col"></div>
+                        </div>
+                        <!-- End of finish button -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- End of main block -->
+        <div class="col"></div>
+>
+    </div>
+</div>
+{% endblock %}
