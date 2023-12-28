@@ -1,7 +1,11 @@
+"""
+The main entry point
+"""
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
-from routrers import render
+from routers import render
 import settings
 
 app = FastAPI()
