@@ -16,8 +16,8 @@ class INavigation:
     List of methods:
         get_elements -- must get elements from any source and return them in a list
     """
-    @staticmethod
-    def get_elements() -> list[NavigationElement]:
+    @classmethod
+    def get_elements(cls) -> list[NavigationElement]:
         """
         Method must get elements from any source and return them in a list
         :return: list of navigation elements
@@ -35,10 +35,10 @@ class NavigationFromList(INavigation):
     """
     elements: list[str] = ["Ongoings", "OVA", "ONA"]
 
-    @staticmethod
-    def get_elements() -> list[NavigationElement]:
+    @classmethod
+    def get_elements(cls) -> list[NavigationElement]:
         result: list[NavigationElement] = list()
-        for element in NavigationFromList.elements:
+        for element in cls.elements:
             result.append(NavigationElement(
                 name=element,
                 url="/search",

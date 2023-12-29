@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Type
 from pydantic import BaseModel
 from datetime import datetime
 
@@ -43,9 +44,18 @@ class AnimeElement(BaseModel):
     status: AnimeStatus
 
 
-class Anime(AnimeElement):
-    publisher: User
+class AnimeShort(AnimeElement):
     originalName: str
+
+    def get_seasons(self) -> list["SeasonOfAnime"]:
+        raise NotImplemented("Not implemented")
+
+    def get_series(self) -> list["Series"]:
+        raise NotImplemented("Not implemented")
+
+
+class Anime(AnimeShort):
+    publisher: User
     englishName: str | None
     russianName: str | None
     description: str | None
@@ -54,12 +64,12 @@ class Anime(AnimeElement):
     tags: list[AnimeTag] | None
     genres: list[Genre] | None
     studio: Studio | None
-    seasonOfPublication: Season
+    seasonOfPublication: Season | None
 
 
 class SeasonOfAnime(AnimeElement):
     n: int
-    anime: Anime
+    anime: Type[AnimeShort]
     season: Season
 
 
