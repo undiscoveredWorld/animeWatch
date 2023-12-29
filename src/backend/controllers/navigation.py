@@ -6,7 +6,7 @@ List of classes:
     NavigationFromList -- (testing only) getting navigation from list
 """
 
-from models.navigation import NavigationElement
+from models.schemes.navigation import NavigationElement
 
 
 class INavigation:

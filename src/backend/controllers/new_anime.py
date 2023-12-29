@@ -1,4 +1,4 @@
-from models.anime import Anime
+from models.schemes.anime import Anime
 
 
 class INewAnime:

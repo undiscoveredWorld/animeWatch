@@ -8,7 +8,7 @@ List of functions:
 from typing import Type
 
 from controllers.navigation import INavigation
-from models.navigation import NavigationElement
+from models.schemes.navigation import NavigationElement
 
 
 def get_navigation_context(navigation_source: Type[INavigation]) -> list[NavigationElement]:
