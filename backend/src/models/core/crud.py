@@ -37,35 +37,21 @@ class ICRUD(ICreate, IRead, IUpdate, IDrop):
 class CRUDFromList(ICRUD):
     elements: list[Model]
 
-    @classmethod
-    def create(cls, instance: Model):
-        cls.elements.append(instance)
+    def create(self, instance: Model):
+        self.elements.append(instance)
 
-    @classmethod
-    def read(cls, instance_id: int) -> Model:
-        return cls.elements[instance_id]
+    def read(self, instance_id: int) -> Model:
+        return self.elements[instance_id]
 
-    @classmethod
-    def read_all(cls) -> list[Model]:
-        return cls.elements
+    def read_all(self) -> list[Model]:
+        return self.elements
 
-    @classmethod
-    def update(cls, instance: Model):
-        for i in range(0, len(cls.elements)):
-            if cls.elements[i] == instance:
-                cls.elements[i] = instance
+    def update(self, instance: Model):
+        for i in range(0, len(self.elements)):
+            if self.elements[i] == instance:
+                self.elements[i] = instance
 
-    @classmethod
-    def drop(cls, instance: Model):
-        for element in cls.elements:
+    def drop(self, instance: Model):
+        for element in self.elements:
             if element.id == instance.id:
-                cls.elements.remove(element)
-
-
-def crud_from_list(elements: list[Model]) -> Type[CRUDFromList]:
-    class NewCRUDFromList(CRUDFromList):
-        pass
-
-    NewCRUDFromList.elements = elements
-
-    return NewCRUDFromList
+                self.elements.remove(element)

@@ -60,7 +60,7 @@ class CRUDFromListTest(unittest.TestCase):
         ]
         studioCrud = crud.CRUDFromList
         studioCrud.elements = elements
-        instance = studioCrud.read(1)
+        instance = studioCrud.read(1, )
 
         self.assertEqual(instance, elements[1])
 

@@ -14,8 +14,8 @@ class AnimeToSeasonRelation(IOneToManyRelation):
 
     @classmethod
     def link(cls, one_instance: Model, many_instance: Model):
-        one_instance = cls.OneModelCRUD.read(one_instance.id)
-        many_instance = cls.ManyModelCRUD.read(many_instance.id)
+        one_instance = cls.OneModelCRUD.read(one_instance.id, )
+        many_instance = cls.ManyModelCRUD.read(many_instance.id, )
 
         meta_one_instance: Type
         meta_many_instance: Type
@@ -60,7 +60,7 @@ class AnimeToSeasonRelation(IOneToManyRelation):
 
     @classmethod
     def unlink(cls, one_instance: Model):
-        one_instance = cls.OneModelCRUD.read(one_instance.id)
+        one_instance = cls.OneModelCRUD.read(one_instance.id, )
 
         one_instance.anime = None
 
