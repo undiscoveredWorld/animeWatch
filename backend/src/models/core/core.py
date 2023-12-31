@@ -1,6 +1,7 @@
 from .crud import ICRUD
 from .crud import CRUDFromList
 from .relations import IOneToManyRelationManager
+from .relations import OneToManyRelationManager
 from .relations import IManyToManyRelationManager
 
 
@@ -21,7 +22,7 @@ class DataFromList(IData):
         return CRUDFromList()
 
     def create_one_to_many_relation_manager(self) -> IOneToManyRelationManager:
-        return super().create_one_to_many_relation_manager()
+        return OneToManyRelationManager()
 
     def create_many_to_many_relation_manager(self) -> IManyToManyRelationManager:
         return super().create_many_to_many_relation_manager()

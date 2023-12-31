@@ -1,32 +1,26 @@
 from .schemes import Model
-from typing import Type
 
 
 class ICreate:
-    @classmethod
-    def create(cls, instance: Model):
+    def create(self, instance: Model):
         pass
 
 
 class IRead:
-    @classmethod
-    def read(cls, instance_id: int) -> Model:
+    def read(self, instance_id: int) -> Model:
         pass
 
-    @classmethod
-    def read_all(cls) -> list[Model]:
+    def read_all(self) -> list[Model]:
         pass
 
 
 class IUpdate:
-    @classmethod
-    def update(cls, instance: Model):
+    def update(self, instance: Model):
         pass
 
 
 class IDrop:
-    @classmethod
-    def drop(cls, instance: Model):
+    def drop(self, instance: Model):
         pass
 
 
@@ -36,6 +30,9 @@ class ICRUD(ICreate, IRead, IUpdate, IDrop):
 
 class CRUDFromList(ICRUD):
     elements: list[Model]
+
+    def __init__(self, elements: list[Model]):
+        self.elements = elements
 
     def create(self, instance: Model):
         self.elements.append(instance)

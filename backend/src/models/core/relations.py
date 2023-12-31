@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from typing import Type
 
 from .crud import ICRUD
@@ -5,37 +6,48 @@ from .schemes import Model
 
 
 class ILinkOnetoManyManager:
-    @classmethod
-    def link(cls, one_instance: Model, many_instance: Model):
+    def link(self, one_instance: Model, many_instance: Model):
         pass
 
-    @classmethod
-    def unlink(cls, one_instance: Model):
+    def unlink(self, one_instance: Model):
         pass
 
 
-class ILinkManytoManyManager:
-    @classmethod
-    def link(cls, instance1: Model, instance2: Model):
+class ILinkManyToManyManager:
+    def link(self, instance1: Model, instance2: Model):
         pass
 
-    @classmethod
-    def unlink(cls, instance1: Model, instance2: Model):
+    def unlink(self, instance1: Model, instance2: Model):
         pass
 
 
 class IGetAllLinkedInstances:
-    @classmethod
-    def get_all_instances(cls, instance: Model) -> list[Model]:
+    def get_all_instances(self, instance: Model) -> list[Model]:
         pass
 
 
 class IOneToManyRelationManager(ILinkOnetoManyManager, IGetAllLinkedInstances):
-    OneModelCRUD: Type[ICRUD]
-    ManyModelCRUD: Type[ICRUD]
+    OneModelCRUD: ICRUD
+    ManyModelCRUD: ICRUD
 
 
-class IManyToManyRelationManager(ILinkManytoManyManager, IGetAllLinkedInstances):
+class IManyToManyRelationManager(ILinkManyToManyManager, IGetAllLinkedInstances):
     RelationCrud: Type[ICRUD]
 
 
+class OneToManyRelationManager(ABC, IOneToManyRelationManager):
+    def link(self, one_instance: Model, many_instance: Model):
+        self.set_fk_value(one_instance, many_instance.id)
+        self.OneModelCRUD.update(one_instance)
+
+    def unlink(self, one_instance: Model):
+        self.set_fk_value(one_instance, None)
+        self.OneModelCRUD.update(one_instance)
+
+    @abstractmethod
+    def get_fk_value(self) -> int | None:
+        pass
+
+    @abstractmethod
+    def set_fk_value(self, instance: Model, fk_value: int | None) -> None:
+        pass
