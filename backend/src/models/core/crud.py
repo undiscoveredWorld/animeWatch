@@ -1,4 +1,4 @@
-from schemes import Model
+from .schemes import Model
 from typing import Type
 
 
@@ -63,6 +63,9 @@ class CRUDFromList(ICRUD):
 
 
 def crud_from_list(elements: list[Model]) -> Type[CRUDFromList]:
-    newCRUDFromList = CRUDFromList
-    newCRUDFromList.elements = elements
-    return newCRUDFromList
+    class NewCRUDFromList(CRUDFromList):
+        pass
+
+    NewCRUDFromList.elements = elements
+
+    return NewCRUDFromList

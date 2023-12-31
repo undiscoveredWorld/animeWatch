@@ -1,8 +1,8 @@
 from enum import Enum
-from typing import Type
+from typing import Optional
 from datetime import datetime
 
-from auth import User
+from .auth import User
 from models.core.schemes import Model
 
 
@@ -30,7 +30,7 @@ class AnimeCategory(Model):
 
 class Studio(Model):
     name: str
-    description: str | None
+    description: Optional[str]
 
 
 class Season(Model):
