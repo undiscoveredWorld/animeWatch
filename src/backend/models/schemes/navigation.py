@@ -4,10 +4,10 @@ Stores classes and functions for working with navigation data
 List of classes:
     NavigationElement -- model for storing information about a navigation element
 """
-from pydantic import BaseModel
+from models.core.schemes import Model
 
 
-class NavigationElement(BaseModel):
+class NavigationElement(Model):
     """
     Model for storing information about a navigation element
 

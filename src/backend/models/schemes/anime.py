@@ -1,9 +1,9 @@
 from enum import Enum
 from typing import Type
-from pydantic import BaseModel
 from datetime import datetime
 
 from auth import User
+from models.core.schemes import Model
 
 
 class AnimeStatus(Enum):
@@ -13,32 +13,32 @@ class AnimeStatus(Enum):
     dropped = "dropped"
 
 
-class Genre(BaseModel):
+class Genre(Model):
     name: str
     description: str | None
 
 
-class AnimeTag(BaseModel):
+class AnimeTag(Model):
     name: str
     description: str | None
 
 
-class AnimeCategory(BaseModel):
+class AnimeCategory(Model):
     name: str
     description: str | None
 
 
-class Studio(BaseModel):
+class Studio(Model):
     name: str
     description: str | None
 
 
-class Season(BaseModel):
+class Season(Model):
     year: int
     timeOfYear: int
 
 
-class AnimeElement(BaseModel):
+class AnimeElement(Model):
     publicationDate: datetime
     previewedDate: datetime
     status: AnimeStatus
@@ -61,16 +61,19 @@ class Anime(AnimeShort):
     description: str | None
     durationOfSeries: str | None
     ageRestriction: str | None
-    tags: list[AnimeTag] | None
-    genres: list[Genre] | None
-    studio: Studio | None
-    seasonOfPublication: Season | None
+
+    class Meta:
+        name = "anime"
 
 
 class SeasonOfAnime(AnimeElement):
     n: int
-    anime: Type[AnimeShort]
-    season: Season
+    anime_id: int
+    season_id: int
+
+    class Meta:
+        name = "seasonOfAnime"
+        FKs = ["anime_id", "season_id"]
 
 
 class Series(AnimeElement):
