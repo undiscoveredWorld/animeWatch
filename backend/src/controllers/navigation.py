@@ -40,6 +40,7 @@ class NavigationFromList(INavigation):
         result: list[NavigationElement] = list()
         for element in cls.elements:
             result.append(NavigationElement(
+                id=0,
                 name=element,
                 url="/search",
                 description=""
