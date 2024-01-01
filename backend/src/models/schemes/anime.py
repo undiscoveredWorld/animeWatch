@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 from .auth import User
-from models.core.schemes import Model
+from .schemes import Model
 
 
 class AnimeStatus(Enum):

@@ -1,4 +1,4 @@
-from models.core.schemes import Model
+from .schemes import Model
 
 
 class User(Model):

@@ -4,7 +4,7 @@ Stores classes and functions for working with navigation data
 List of classes:
     NavigationElement -- model for storing information about a navigation element
 """
-from models.core.schemes import Model
+from .schemes import Model
 
 
 class NavigationElement(Model):
