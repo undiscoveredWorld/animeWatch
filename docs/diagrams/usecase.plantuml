@@ -10,10 +10,14 @@ Viewer --> (Regisration)
 Viewer -left-> animeList
 (Login) <.- (Username, password) : includes
 (Regisration) <.- (Username, password) : includes
+(Regisration) <.- (About me, avatar) : extends
+(Regisration) <.- (Email) : includes
+(Regisration) <.- (Captcha) : includes
+(Regisration) <.right- (Verify email) : includes
 
 (Check profile) as profile
 User -> profile
-profile <. (Change username or/and password)
+profile <. (Change any infomation)
 
 User --> animeList
 
@@ -22,8 +26,8 @@ animeList <.- (Search anime) : extends
 (Search anime) <.- (Open anime) : extends
 
 animeList <.- (Open anime) : extends
-(Open anime) <.- (Show description) : extends
-(Open anime) <.- (Open series) : extends
+(Open anime) <.- (Show description, screenshots) : extends
+(Open anime) <.- (Select season, series, translate, player) : extends
 (Open anime) <.- (Return to anime list) : extends
 (Open anime) <.- (Leave commen logined only) : extends
 (Open anime) <.- (Show comments) : extends
