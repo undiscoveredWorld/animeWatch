@@ -6,6 +6,13 @@ from .auth import User
 from .schemes import Model
 
 
+class TimesOfYear(Enum):
+    winter = 1
+    spring = 2
+    summer = 3
+    autumn = 4
+
+
 class AnimeStatus(Enum):
     released = "released"
     previewed = "previewed"
@@ -35,7 +42,7 @@ class Studio(Model):
 
 class Season(Model):
     year: int
-    time_of_year: int
+    time_of_year: TimesOfYear
 
 
 class AnimeElement(Model):
