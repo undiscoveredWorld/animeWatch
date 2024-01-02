@@ -73,3 +73,14 @@ class Series(AnimeElement):
     n: int
     season: SeasonOfAnime
     name: str | None
+
+
+class Translate(AnimeElement):
+    series: Series
+    name: str | None
+
+
+class Player(AnimeElement):
+    translate: Translate
+    name: str | None
+    url: str
