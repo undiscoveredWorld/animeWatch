@@ -24,7 +24,7 @@ package models {
             Model <|-- User
         }
 
-        package anime {
+        package scmeses.anime {
             class AnimeElement {
                 Date publication_date
                 Date previewed_date
@@ -51,6 +51,9 @@ package models {
                 + String description
                 + Stirng durationOfSeries
                 + String ageRestriction
+                + AnimeCategory category
+                + Studio studio
+                + Season season
                 
                 + SeasonOfAnime[] getSeasons()
                 + Series[] getSerieses()
@@ -103,32 +106,11 @@ package models {
 
             SeasonOfAnime *-- Series
             Anime *-- SeasonOfAnime
+            AnimeCategory o-- Anime
+            Studio o-- Anime
+            Season o--Anime
         }
     }
-}
-
-
-
-
-
-
-
-class Comment {
-    - User sender
-    - String body
-    - Date publishDate
-    - CommentStatus status
-    - IAnime parent
-
-    + Comment Comment(parent, sender, body)
-    + Comment Comment(parent, sender, body, status)
-
-}
-
-enum CommentStatus {
-    "OnChecking"
-    "Published"
-    "Hidden"
 }
 
 @enduml
