@@ -35,7 +35,7 @@ class Studio(Model):
 
 class Season(Model):
     year: int
-    timeOfYear: int
+    time_of_year: int
 
 
 class AnimeElement(Model):
