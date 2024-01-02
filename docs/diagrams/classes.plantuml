@@ -31,6 +31,16 @@ package models {
                 AnimeStatus anime_status
             }
 
+            class Player {
+                + String name
+                + Player player
+            }
+
+            class Translate {
+                + String name
+                + Series series
+            }
+
             class Series {
                 + int n
                 + String name
@@ -98,12 +108,16 @@ package models {
             Model <|-- Studio
             Model <|-- Season
 
+            AnimeElement <|-- Player
+            AnimeElement <|-- Translate
             AnimeElement <|-- Series
             AnimeElement <|-- SeasonOfAnime
             AnimeElement <|-- Anime
 
             AnimeElement - AnimeStatus
 
+            Translate *-- Player
+            Series *-- Translate
             SeasonOfAnime *-- Series
             Anime *-- SeasonOfAnime
             AnimeCategory o-- Anime
