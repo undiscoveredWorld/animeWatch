@@ -39,13 +39,22 @@ class Season(Model):
 
 
 class AnimeElement(Model):
-    publicationDate: datetime
-    previewedDate: datetime
-    status: AnimeStatus
+    publication_date: datetime
+    previewed_date: datetime
+    anime_status: AnimeStatus
 
 
-class AnimeShort(AnimeElement):
-    originalName: str
+class Anime(AnimeElement):
+    publisher: User
+    original_name: str
+    english_name: str | None
+    russian_name: str | None
+    description: str | None
+    duration_of_series: str | None
+    age_restriction: str | None
+    category: AnimeCategory
+    studio: Studio
+    season: Season
 
     def get_seasons(self) -> list["SeasonOfAnime"]:
         raise NotImplemented("Not implemented")
@@ -54,26 +63,10 @@ class AnimeShort(AnimeElement):
         raise NotImplemented("Not implemented")
 
 
-class Anime(AnimeShort):
-    publisher: User
-    englishName: str | None
-    russianName: str | None
-    description: str | None
-    durationOfSeries: str | None
-    ageRestriction: str | None
-
-    class Meta:
-        name = "anime"
-
-
 class SeasonOfAnime(AnimeElement):
     n: int
-    anime_id: int
-    season_id: int
-
-    class Meta:
-        name = "seasonOfAnime"
-        FKs = ["anime_id", "season_id"]
+    anime: Anime
+    season: Season
 
 
 class Series(AnimeElement):
