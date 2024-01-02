@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import Optional
 from datetime import datetime
+from pydantic import BaseModel
 
 from .auth import User
 from .schemes import Model
@@ -20,54 +21,126 @@ class AnimeStatus(Enum):
     dropped = "dropped"
 
 
-class Genre(Model):
+class GenreBase(BaseModel):
     name: str
     description: str | None
 
 
-class AnimeTag(Model):
+class GenreCreate(GenreBase):
+    pass
+
+
+class Genre(GenreBase):
+    id: int
+    all_anime: list["Anime"]
+
+    class Config:
+        orm_mode = True
+
+
+class AnimeTagBase(BaseModel):
     name: str
     description: str | None
 
 
-class AnimeCategory(Model):
+class AnimeTagCreate(AnimeTagBase):
+    pass
+
+
+class AnimeTag(AnimeTagBase):
+    id: int
+    all_anime: list["Anime"]
+
+    class Config:
+        orm_mode = True
+
+
+class AnimeCategoryBase(BaseModel):
     name: str
     description: str | None
 
 
-class Studio(Model):
+class AnimeCategoryCreate(AnimeCategoryBase):
+    pass
+
+
+class AnimeCategory(AnimeCategoryBase):
+    id: int
+    all_anime: list["Anime"]
+
+    class Config:
+        orm_mode = True
+
+
+class StudioBase(BaseModel):
     name: str
     description: Optional[str]
 
 
-class Season(Model):
+class StudioCreate(StudioBase):
+    pass
+
+
+class Studio(StudioBase):
+    id: int
+    all_anime: list["Anime"]
+
+    class Config:
+        orm_mode = True
+
+
+class SeasonBase(BaseModel):
     year: int
     time_of_year: TimesOfYear
 
 
-class AnimeElement(Model):
+class SeasonCreate(SeasonBase):
+    pass
+
+
+class Season(SeasonBase):
+    id: int
+    all_anime: list["Anime"]
+
+    class Config:
+        orm_mode = True
+
+
+class AnimeElement(BaseModel):
     publication_date: datetime
     previewed_date: datetime
     anime_status: AnimeStatus
 
 
-class Anime(AnimeElement):
-    publisher: User
+class AnimeBase(BaseModel):
+    previewed_date: datetime | None
+    anime_status: AnimeStatus
     original_name: str
     english_name: str | None
     russian_name: str | None
     description: str | None
     duration_of_series: str | None
     age_restriction: str | None
+
+
+class AnimeCreate(AnimeBase):
+    publisher: User
     category: AnimeCategory
     studio: Studio
     season: Season
 
-    def get_seasons(self) -> list["SeasonOfAnime"]:
-        raise NotImplemented("Not implemented")
 
-    def get_series(self) -> list["Series"]:
-        raise NotImplemented("Not implemented")
+class Anime(AnimeBase):
+    publisher: User
+    publication_date: datetime
+    category: AnimeCategory
+    studio: Studio
+    season: Season
+    category: AnimeCategory
+    studio: Studio
+    season: Season
+    genres: list[Genre]
+    tags: list[AnimeTag]
 
 
 class SeasonOfAnime(AnimeElement):

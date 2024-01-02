@@ -91,6 +91,7 @@ class Anime(Base):
     description = Column(String)
     duration_of_series = Column(String)
     age_restriction = Column(String)
+    status = Column(Enum(AnimeStatus))
     category_id = Column(Integer, ForeignKey("anime_categories.id"))
     studio_id = Column(Integer, ForeignKey("studios.id"))
     season_id = Column(Integer, ForeignKey("seasons.id"))
