@@ -51,6 +51,9 @@ package models {
                 + String description
                 + Stirng durationOfSeries
                 + String ageRestriction
+                + AnimeCategory category
+                + Studio studio
+                + Season season
                 
                 + SeasonOfAnime[] getSeasons()
                 + Series[] getSerieses()
@@ -103,6 +106,9 @@ package models {
 
             SeasonOfAnime *-- Series
             Anime *-- SeasonOfAnime
+            AnimeCategory o-- Anime
+            Studio o-- Anime
+            Season o--Anime
         }
     }
 }
