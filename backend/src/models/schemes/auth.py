@@ -1,5 +1,5 @@
-from .schemes import Model
+from pydantic import BaseModel
 
 
-class User(Model):
+class UserBase(BaseModel):
     pass

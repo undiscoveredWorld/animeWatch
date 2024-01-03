@@ -4,7 +4,6 @@ from datetime import datetime
 from pydantic import BaseModel
 
 from .auth import User
-from .schemes import Model
 
 
 class TimesOfYear(Enum):
@@ -131,36 +130,87 @@ class AnimeCreate(AnimeBase):
 
 
 class Anime(AnimeBase):
+    id: int
     publisher: User
     publication_date: datetime
-    category: AnimeCategory
-    studio: Studio
-    season: Season
-    category: AnimeCategory
-    studio: Studio
-    season: Season
+    category_id: int
+    studio_id: int
+    season_id: int
     genres: list[Genre]
     tags: list[AnimeTag]
+    seasons: list["SeasonOfAnime"]
+
+    class Config:
+        orm_mode = True
 
 
-class SeasonOfAnime(AnimeElement):
+class SeasonOfAnimeBase(BaseModel):
     n: int
+
+
+class SeasonOfAnimeCreate(BaseModel):
     anime: Anime
     season: Season
 
 
-class Series(AnimeElement):
+class SeasonOfAnime(SeasonOfAnimeBase):
+    id: int
     n: int
+    anime_id: int
+    season_id: int
+    series: list["Series"]
+
+    class Config:
+        orm_mode = True
+
+
+class SeriesBase(BaseModel):
+    n: int
+    name: str | None
+
+
+class SeriesCreate(SeriesBase):
     season: SeasonOfAnime
+
+
+class Series(SeriesBase):
+    id: int
+    season_id: int
+    translates: list["Translate"]
+
+    class Config:
+        orm_mode = True
+
+
+class TranslateBase(BaseModel):
     name: str | None
 
 
-class Translate(AnimeElement):
+class TranslateCreate(TranslateBase):
     series: Series
-    name: str | None
 
 
-class Player(AnimeElement):
-    translate: Translate
+class Translate(TranslateBase):
+    id: int
+    series_id: int
+    players: list["Player"]
+
+    class Config:
+        orm_mode = True
+
+
+class PlayerBase(BaseModel):
     name: str | None
     url: str
+
+
+class PlayerCreate(PlayerBase):
+    translate: Translate
+
+
+class Player(PlayerBase):
+    id: int
+    translate_id: int
+
+    class Config:
+        orm_mode = True
