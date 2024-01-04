@@ -5,7 +5,7 @@ from sqlalchemy import String
 from models.database.db import Base
 
 
-class NavigationElements(Base):
+class NavigationElement(Base):
     __tablename__ = "navigation_elements"
 
     id = Column(Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)

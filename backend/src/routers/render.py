@@ -14,7 +14,7 @@ from starlette.responses import HTMLResponse
 
 from views.render import render_page
 from views.navigation import get_navigation_context
-from controllers.navigation import NavigationFromList
+from controllers.navigation import NavigationFromSQL
 
 router = APIRouter()
 
@@ -25,7 +25,7 @@ def get_generic_context() -> dict:
     :return: Completed generic context
     """
     return {
-        "navigation_elements": get_navigation_context(NavigationFromList)
+        "navigation_elements": get_navigation_context(NavigationFromSQL)
     }
 
 

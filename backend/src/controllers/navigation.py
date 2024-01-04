@@ -7,6 +7,7 @@ List of classes:
 """
 
 from models.schemes.navigation import NavigationElement
+from models.database.crud.navigation import get_all_navigation
 
 
 class INavigation:
@@ -46,3 +47,11 @@ class NavigationFromList(INavigation):
                 description=""
             ))
         return result
+
+
+class NavigationFromSQL(INavigation):
+
+    @classmethod
+    def get_elements(cls) -> list[NavigationElement]:
+        return get_all_navigation()
+    

@@ -6,7 +6,21 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from routers import render
+from models.database.db import Base
+from models.database.db import engine
+from models.database.db import SessionLocal
 import settings
+
+Base.metadata.create_all(bind=engine)
+
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 
 app = FastAPI()
 
