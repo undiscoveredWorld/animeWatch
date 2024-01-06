@@ -1,0 +1,20 @@
+@startuml usercase
+
+actor "Request getter" as request_getter
+
+(Handle sitemap) as handle_sitemap
+(Render page) as render_page
+(Generate context) as generate_context
+(Access to API) as api_access
+(Generate response) as generate_response
+(Access to static files) as static_files_access
+
+request_getter -down- handle_sitemap
+handle_sitemap <-down. render_page : include
+handle_sitemap <-down. generate_context : include
+handle_sitemap <-down. generate_response : include
+render_page <-down. static_files_access : include
+generate_context <-down. api_access : extends
+
+
+@enduml
