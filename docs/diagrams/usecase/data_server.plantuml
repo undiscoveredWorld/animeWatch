@@ -1,0 +1,27 @@
+@startuml usecase
+
+actor "Request getter" as request_getter
+
+(Handle requests) as handle_requests
+(Validation data) as validation_data
+(Verification data) as verification_data
+(Controllers) as controllers
+(CRUDs) as cruds
+(Connect to db) as connect_to_db
+(Connect to redis) as connect_to_redis
+(Connect to SQL) as connect_to_sql
+(Connect to Mongo) as connect_to_mongo
+
+
+request_getter -down- handle_requests
+handle_requests <.down- validation_data : includes
+handle_requests <.down- verification_data : includes
+handle_requests <.down- controllers : includs
+controllers <.down- cruds : extends
+cruds <.down- connect_to_db : includes
+connect_to_db <.down- connect_to_redis : extends
+connect_to_db <.down- connect_to_sql : extends
+connect_to_db <.down- connect_to_mongo : extends
+
+
+@enduml

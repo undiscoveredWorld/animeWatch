@@ -1,31 +1,80 @@
 @startuml component
 
-[AnimeList] as animeList
-[Anime] as anime
-[Serieses] as serieses
+[Browser]
 
-() "HTTPS" as IHTTPS
-() "Name, description" as IAnime
-() "DB Driver" as dbd
+() API
 
-animeList -down-> anime : contains
-anime -down-> serieses : contains
-IAnime -> anime
+node "Static server" {
+    [Routers] as static_routers
+    [Context]
+    [Response]
+    [HTML Render]
+    folder "Static files" as static_files
 
-animeList -right-> IHTTPS
-anime -right-> IHTTPS
-serieses -right-> IHTTPS
+    () "Request getter" as request_getter
 
-database DB{
-    [Anime] as animeDB
-    [Serieses] as seriesesDB
+    request_getter -down- static_routers
+    static_routers -down- [Context] : generate and get context
+    static_routers -down- [Response]
+    static_routers -down- [HTML Render] : render page
+    [HTML Render] -right- static_files
+
+    [Context] -down-> API
 }
 
-animeList -down-> dbd : askAllAnime
-dbd -down-> animeDB : askAllAnime
+node "Data server" {
+    package models {
+        [DB Drivers]
+        [Models]
+        [Redis iteratction]
+    }
 
-anime -down-> dbd : askAllSeries
-anime -down-> dbd : askAllComments
+    package controlers {
+        [Controlers]
+    }
 
+    package views {
+        [Validators]
+    }
+
+    [Routers] as data_routers
+
+    data_routers -down- [Validators] : validate input
+    data_routers -down- [Controlers] : do needed actions
+    [Controlers] -down- [Models] : get info
+    [Controlers] -down- [Redis iteratction] : get info
+    [Models] -down- [DB Drivers] : get info from db
+    [DB Drivers] -down- sql_db
+    [DB Drivers] -down- mongo_db
+    [Redis iteratction] -up-> API
+}
+
+node "Redis server" {
+    [Routers] as redis_routers
+    [Redis driver]
+
+    redis_routers -down- [Redis driver] : get info
+    [Redis driver] -down- redis
+}
+
+database "SQL" as sql_db {
+    [Navigation]
+    [Users]
+}
+
+database "MongoDB" as mongo_db {
+    [Anime]
+}
+
+database "Redis" as redis {
+    [Sessions]
+}
+
+
+Browser -right- HTTP
+HTTP -down- request_getter
+
+API -down-> data_routers
+API -down-> redis_routers
 
 @enduml

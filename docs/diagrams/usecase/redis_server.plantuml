@@ -1,0 +1,13 @@
+@startuml usercase
+
+actor "Request getter" as request_getter
+
+(Handle requestes) as handle_requests
+(CRUDs) as cruds
+(Sessions) as sessions
+
+request_getter -- handle_requests
+handle_requests <-down. cruds : extends
+cruds <-down. sessions : includes
+
+@enduml
