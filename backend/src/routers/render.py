@@ -10,6 +10,7 @@ List of routers:
 """
 
 from fastapi import APIRouter, Request
+from fastapi import Depends
 from starlette.responses import HTMLResponse
 
 from views.render import render_page
