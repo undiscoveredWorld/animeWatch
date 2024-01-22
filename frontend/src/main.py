@@ -6,7 +6,6 @@ from fastapi.staticfiles import StaticFiles
 from starlette.requests import Request
 from starlette.responses import HTMLResponse
 from starlette.templating import _TemplateResponse
-from aiohttp import ClientSession
 
 BASEDIR = environ.get("BASEDIR") or path.dirname(__file__)
 
@@ -19,13 +18,6 @@ templates = Jinja2Templates(directory="{0}/templates".format(BASEDIR))
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
     return render_page("home.html", request)
-
-
-@app.get("/test")
-async def test(request: Request):
-    async with ClientSession() as session:
-        async with session.get("http://backend:8080/") as response:
-            print(response.text())
 
 
 @app.get("/search", response_class=HTMLResponse)
