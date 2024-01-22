@@ -8,3 +8,4 @@ list of settings:
 import os
 
 BASEDIR = os.environ.get("BASEDIR") or os.path.dirname(__file__)
+POSTGRES_URL = os.environ["POSTGRES_URL"]
