@@ -18,6 +18,11 @@ from controllers.navigation import NavigationFromList
 router = APIRouter()
 
 
+@router.get("/")
+async def test(request: Request):
+    return {"message": "Hello World"}
+
+
 def get_generic_context() -> dict:
     """
     Collect all generic context, summarize it and return it

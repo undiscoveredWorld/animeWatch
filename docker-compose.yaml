@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  backend:
+    image: anime-watch-backend
+    build: ./backend/src
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: anime-watch-frontend
+    build: ./frontend/src
+    ports:
+      - "80:80"
+

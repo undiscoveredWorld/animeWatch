@@ -10,5 +10,4 @@ import settings
 
 app = FastAPI()
 
-
 app.include_router(render.router)

@@ -1,2 +1,3 @@
 .idea
 backend/src/.venv
+frontend/src/.venv
