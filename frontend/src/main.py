@@ -1,5 +1,3 @@
-from os import environ
-from os import path
 from fastapi import FastAPI
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -7,7 +5,8 @@ from starlette.requests import Request
 from starlette.responses import HTMLResponse
 from starlette.templating import _TemplateResponse
 
-BASEDIR = environ.get("BASEDIR") or path.dirname(__file__)
+from settings import BASEDIR
+from context import get_navigation_context
 
 app = FastAPI()
 
@@ -17,7 +16,8 @@ templates = Jinja2Templates(directory="{0}/templates".format(BASEDIR))
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return render_page("home.html", request)
+    navigation_context = await get_navigation_context()
+    return render_page("home.html", request, navigation_context)
 
 
 @app.get("/search", response_class=HTMLResponse)
@@ -49,4 +49,5 @@ def render_page(page: str, request: Request, context: dict = dict) -> _TemplateR
     :return:
     """
     finally_context = {"request": request}
+    finally_context.update(context)
     return templates.TemplateResponse(page, finally_context)
