@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel
 
-from .auth import User
+from .auth import UserBase
 
 
 class TimesOfYear(Enum):
@@ -123,7 +123,7 @@ class AnimeBase(BaseModel):
 
 
 class AnimeCreate(AnimeBase):
-    publisher: User
+    publisher: UserBase
     category: AnimeCategory
     studio: Studio
     season: Season
@@ -131,7 +131,7 @@ class AnimeCreate(AnimeBase):
 
 class Anime(AnimeBase):
     id: int
-    publisher: User
+    publisher: UserBase
     publication_date: datetime
     category_id: int
     studio_id: int

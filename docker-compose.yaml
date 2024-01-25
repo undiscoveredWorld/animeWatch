@@ -1,15 +1,29 @@
 version: "3.7"
 
 services:
+  postgres:
+    image: postgres:alpine
+    container_name: "postgres_db"
+    restart: always
+    env_file:
+      - docker.env
   backend:
     image: anime-watch-backend
     build: ./backend/src
     ports:
       - "8080:8080"
+    env_file:
+      - docker.env
 
   frontend:
     image: anime-watch-frontend
     build: ./frontend/src
     ports:
       - "80:80"
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8081:8080"
 
