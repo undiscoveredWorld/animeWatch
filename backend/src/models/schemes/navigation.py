@@ -9,7 +9,7 @@ from pydantic import BaseModel
 
 class NavigationElementBase(BaseModel):
     name: str
-    description: str | None
+    description: str
     url: str
 
 

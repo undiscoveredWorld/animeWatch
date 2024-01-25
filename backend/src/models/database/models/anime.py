@@ -56,7 +56,7 @@ class Season(Base):
     year = Column(Integer, unique=True, nullable=False)
     time_of_year = Column(Enum(TimesOfYear), nullable=False)
 
-    all_anime = relationship("Anime", back_populates="studio")
+    all_anime = relationship("Anime", back_populates="season")
     all_seasons_of_anime = relationship("SeasonOfAnime", back_populates="season")
 
 
@@ -79,7 +79,7 @@ class TagToAnime(Base):
     anime_tag_id = Column(Integer, ForeignKey("anime_tags.id"))
 
     anime = relationship("Anime", back_populates="tags")
-    anime_tag = relationship("Genre", back_populates="all_anime")
+    anime_tag = relationship("AnimeTag", back_populates="all_anime")
 
 
 class Anime(Base):
@@ -97,7 +97,7 @@ class Anime(Base):
     studio_id = Column(Integer, ForeignKey("studios.id"))
     season_id = Column(Integer, ForeignKey("seasons.id"))
 
-    category = relationship("Category", back_populates="all_anime")
+    category = relationship("AnimeCategory", back_populates="all_anime")
     studio = relationship("Studio", back_populates="all_anime")
     season = relationship("Season", back_populates="all_anime")
     genres = relationship("GenreToAnime", back_populates="anime")
