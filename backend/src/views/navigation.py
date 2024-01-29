@@ -1,10 +1,3 @@
-"""
-Support navigation view
-
-List of functions:
-    get_navigation_context -- gets navigation context from navigation source and returns it
-"""
-
 from typing import Type
 
 from controllers.navigation import INavigation

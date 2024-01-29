@@ -1,9 +1,8 @@
 from enum import Enum
-from typing import Optional
 from datetime import datetime
 from pydantic import BaseModel
 
-from .auth import UserBase
+from .auth import User
 
 
 class TimesOfYear(Enum):
@@ -20,26 +19,26 @@ class AnimeStatus(Enum):
     dropped = "dropped"
 
 
-class GenreBase(BaseModel):
+class AnimeGenreBase(BaseModel):
     name: str
-    description: str | None
+    description: str
 
 
-class GenreCreate(GenreBase):
+class AnimeGenreCreate(AnimeGenreBase):
     pass
 
 
-class Genre(GenreBase):
+class AnimeGenre(AnimeGenreBase):
     id: int
     all_anime: list["Anime"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class AnimeTagBase(BaseModel):
     name: str
-    description: str | None
+    description: str
 
 
 class AnimeTagCreate(AnimeTagBase):
@@ -51,12 +50,12 @@ class AnimeTag(AnimeTagBase):
     all_anime: list["Anime"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class AnimeCategoryBase(BaseModel):
     name: str
-    description: str | None
+    description: str
 
 
 class AnimeCategoryCreate(AnimeCategoryBase):
@@ -68,24 +67,24 @@ class AnimeCategory(AnimeCategoryBase):
     all_anime: list["Anime"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
-class StudioBase(BaseModel):
+class AnimeStudioBase(BaseModel):
     name: str
-    description: Optional[str]
+    description: str
 
 
-class StudioCreate(StudioBase):
+class AnimeStudioCreate(AnimeStudioBase):
     pass
 
 
-class Studio(StudioBase):
+class AnimeStudio(AnimeStudioBase):
     id: int
     all_anime: list["Anime"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class SeasonBase(BaseModel):
@@ -102,46 +101,39 @@ class Season(SeasonBase):
     all_anime: list["Anime"]
 
     class Config:
-        orm_mode = True
-
-
-class AnimeElement(BaseModel):
-    publication_date: datetime
-    previewed_date: datetime
-    anime_status: AnimeStatus
+        from_attributes = True
 
 
 class AnimeBase(BaseModel):
-    previewed_date: datetime | None
-    anime_status: AnimeStatus
     original_name: str
-    english_name: str | None
-    russian_name: str | None
-    description: str | None
-    duration_of_series: str | None
-    age_restriction: str | None
+    english_name: str
+    russian_name: str
+
+    publication_date: datetime
+    previewed_date: datetime
+    anime_status: AnimeStatus
+    description: str
+    duration_of_series: str
+    age_restriction: str
+
+    publisher: User
+    category: AnimeCategory
+    studio: AnimeStudio
+    season: Season
 
 
 class AnimeCreate(AnimeBase):
-    publisher: UserBase
-    category: AnimeCategory
-    studio: Studio
-    season: Season
+    pass
 
 
 class Anime(AnimeBase):
     id: int
-    publisher: UserBase
-    publication_date: datetime
-    category_id: int
-    studio_id: int
-    season_id: int
-    genres: list[Genre]
+    genres: list[AnimeGenre]
     tags: list[AnimeTag]
     seasons: list["SeasonOfAnime"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class SeasonOfAnimeBase(BaseModel):
@@ -158,59 +150,59 @@ class SeasonOfAnime(SeasonOfAnimeBase):
     n: int
     anime_id: int
     season_id: int
-    series: list["Series"]
+    series: list["AnimeSeries"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
-class SeriesBase(BaseModel):
+class AnimeSeriesBase(BaseModel):
     n: int
-    name: str | None
+    name: str
 
 
-class SeriesCreate(SeriesBase):
+class AnimeSeriesCreate(AnimeSeriesBase):
     season: SeasonOfAnime
 
 
-class Series(SeriesBase):
+class AnimeSeries(AnimeSeriesBase):
     id: int
     season_id: int
-    translates: list["Translate"]
+    translates: list["AnimeTranslate"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
-class TranslateBase(BaseModel):
-    name: str | None
+class AnimeTranslateBase(BaseModel):
+    name: str
 
 
-class TranslateCreate(TranslateBase):
-    series: Series
+class AnimeTranslateCreate(AnimeTranslateBase):
+    series: AnimeSeries
 
 
-class Translate(TranslateBase):
+class AnimeTranslate(AnimeTranslateBase):
     id: int
     series_id: int
-    players: list["Player"]
+    players: list["AnimeVideoPlayer"]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
-class PlayerBase(BaseModel):
-    name: str | None
+class AnimeVideoPlayerBase(BaseModel):
+    name: str
     url: str
 
 
-class PlayerCreate(PlayerBase):
-    translate: Translate
+class AnimeVideoPlayerCreate(AnimeVideoPlayerBase):
+    translate: AnimeTranslate
 
 
-class Player(PlayerBase):
+class AnimeVideoPlayer(AnimeVideoPlayerBase):
     id: int
     translate_id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True

@@ -31,17 +31,17 @@ package models {
                 AnimeStatus anime_status
             }
 
-            class Player {
+            class AnimeVideoPlayer {
                 + String name
-                + Player player
+                + AnimeVideoPlayer player
             }
 
-            class Translate {
+            class AnimeTranslate {
                 + String name
-                + Series series
+                + AnimeSeries series
             }
 
-            class Series {
+            class AnimeSeries {
                 + int n
                 + String name
                 + SeasonOfAnime season
@@ -62,11 +62,11 @@ package models {
                 + Stirng durationOfSeries
                 + String ageRestriction
                 + AnimeCategory category
-                + Studio studio
+                + AnimeStudio studio
                 + Season season
                 
                 + SeasonOfAnime[] getSeasons()
-                + Series[] getSerieses()
+                + AnimeSeries[] getSerieses()
             }
 
             class AnimeCategory {
@@ -84,7 +84,7 @@ package models {
                 + String description
             }
 
-            class Studio {
+            class AnimeStudio {
                 + String name
                 + String description
             }
@@ -105,23 +105,23 @@ package models {
             Model <|-- AnimeCategory
             Model <|-- AnimeTag
             Model <|-- Genre
-            Model <|-- Studio
+            Model <|-- AnimeStudio
             Model <|-- Season
 
-            AnimeElement <|-- Player
-            AnimeElement <|-- Translate
-            AnimeElement <|-- Series
+            AnimeElement <|-- AnimeVideoPlayer
+            AnimeElement <|-- AnimeTranslate
+            AnimeElement <|-- AnimeSeries
             AnimeElement <|-- SeasonOfAnime
             AnimeElement <|-- Anime
 
             AnimeElement - AnimeStatus
 
-            Translate *-- Player
-            Series *-- Translate
-            SeasonOfAnime *-- Series
+            AnimeTranslate *-- AnimeVideoPlayer
+            AnimeSeries *-- AnimeTranslate
+            SeasonOfAnime *-- AnimeSeries
             Anime *-- SeasonOfAnime
             AnimeCategory o-- Anime
-            Studio o-- Anime
+            AnimeStudio o-- Anime
             Season o--Anime
         }
     }

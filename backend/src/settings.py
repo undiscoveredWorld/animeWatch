@@ -1,10 +1,3 @@
-"""
-Stores all settings of the application
-
-list of settings:
-    BASEDIR - the base directory of the application
-"""
-
 import os
 
 
