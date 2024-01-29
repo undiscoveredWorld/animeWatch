@@ -1,9 +1,3 @@
-"""
-Stores classes and functions for working with navigation data
-
-List of classes:
-    NavigationElement -- model for storing information about a navigation element
-"""
 from pydantic import BaseModel
 
 

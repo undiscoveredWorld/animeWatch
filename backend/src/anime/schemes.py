@@ -1,22 +1,9 @@
-from enum import Enum
 from datetime import datetime
+
 from pydantic import BaseModel
 
-from .auth import User
-
-
-class TimesOfYear(Enum):
-    winter = 1
-    spring = 2
-    summer = 3
-    autumn = 4
-
-
-class AnimeStatus(Enum):
-    released = "released"
-    previewed = "previewed"
-    ongoing = "ongoing"
-    dropped = "dropped"
+from anime.enums import TimesOfYear, AnimeStatus
+from auth.schemes import User
 
 
 class AnimeGenreBase(BaseModel):

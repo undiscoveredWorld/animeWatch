@@ -1,7 +1,7 @@
 import unittest
 from models.core.schemes import Model
 from models.core import crud
-from models.schemes.anime import AnimeStudio
+from anime.schemes import AnimeStudio
 
 
 class CRUDFromListTest(unittest.TestCase):

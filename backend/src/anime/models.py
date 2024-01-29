@@ -1,12 +1,8 @@
-from sqlalchemy import Column, ForeignKey
-from sqlalchemy import Enum
-from sqlalchemy import Integer
-from sqlalchemy import String
+from sqlalchemy import Column, Integer, String, Enum, ForeignKey
 from sqlalchemy.orm import relationship
 
-from models.database.db import Base
-from models.schemes.anime import AnimeStatus
-from models.schemes.anime import TimesOfYear
+from anime.enums import TimesOfYear, AnimeStatus
+from common.db import Base
 
 
 class Genre(Base):
@@ -98,7 +94,7 @@ class Anime(Base):
     season_id = Column(Integer, ForeignKey("seasons.id"))
 
     category = relationship("AnimeCategory", back_populates="all_anime")
-    studio = relationship("AnimeStudio", back_populates="all_anime")
+    studio = relationship("Studio", back_populates="all_anime")
     season = relationship("Season", back_populates="all_anime")
     genres = relationship("GenreToAnime", back_populates="anime")
     tags = relationship("TagToAnime", back_populates="anime")
@@ -114,7 +110,7 @@ class SeasonOfAnime(Base):
     anime_id = Column(Integer, ForeignKey("anime.id"))
 
     season = relationship("Season", back_populates="all_seasons_of_anime")
-    series = relationship("AnimeSeries", back_populates="season_of_anime")
+    series = relationship("Series", back_populates="season_of_anime")
     anime = relationship("Anime", back_populates="seasons")
 
 
@@ -127,7 +123,7 @@ class Series(Base):
     season_of_anime_id = Column(Integer, ForeignKey("seasons_of_anime.id"))
 
     season_of_anime = relationship("SeasonOfAnime", back_populates="series")
-    translates = relationship("AnimeTranslate", back_populates="series")
+    translates = relationship("Translate", back_populates="series")
 
 
 class Translate(Base):
@@ -137,8 +133,8 @@ class Translate(Base):
     name = Column(String, nullable=True)
     series_id = Column(Integer, ForeignKey("series.id"))
 
-    series = relationship("AnimeSeries", back_populates="translates")
-    players = relationship("AnimeVideoPlayer", back_populates="translate")
+    series = relationship("Series", back_populates="translates")
+    players = relationship("Player", back_populates="translate")
 
 
 class Player(Base):
@@ -149,4 +145,4 @@ class Player(Base):
     url = Column(String, nullable=False, default="#")
     translate_id = Column(Integer, ForeignKey("translates.id"))
 
-    translate = relationship("AnimeTranslate", back_populates="players")
+    translate = relationship("Translate", back_populates="players")

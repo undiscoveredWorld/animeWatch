@@ -1,8 +1,6 @@
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String
+from sqlalchemy import Column, Integer, String
 
-from models.database.db import Base
+from common.db import Base
 
 
 class NavigationElement(Base):
