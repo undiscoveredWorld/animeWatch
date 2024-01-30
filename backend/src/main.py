@@ -8,7 +8,6 @@ from common.db import main_sql_engine
 
 def _create_all_in_metadata(metadata: MetaData) -> None:
     # Needs for working create_all
-    import anime.models
     import navigation.models
     metadata.create_all(bind=main_sql_engine)
 
