@@ -2,13 +2,11 @@ from fastapi.routing import APIRouter
 from fastapi import Depends
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo.errors import DuplicateKeyError
+from starlette.responses import JSONResponse
 
-from .crud import create_genre as crud_create_genre
-from .crud import update_genre as crud_update_genre
-from .crud import create_tag as crud_create_tag
-from .crud import create_category as crud_create_category
-from .crud import create_studio as crud_create_studio
-from .crud import create_season as crud_create_season
+from .crud import create_mongo_model
+from .crud import update_mongo_model
+from .crud import delete_mongo_model
 from .schemes import AnimeGenreCreate, AnimeGenre
 from .schemes import AnimeTagCreate, AnimeTag
 from .schemes import AnimeCategoryCreate, AnimeCategory
@@ -27,7 +25,9 @@ async def create_genre(
         db: AsyncIOMotorClient = Depends(get_main_mongo_db)
 ) -> AnimeGenre:
     try:
-        return await crud_create_genre(db, genre)
+        result = await create_mongo_model(db, genre)
+        new_genre = AnimeGenre(**result)
+        return new_genre
     except DuplicateKeyError:
         raise_insert_duplicated_instance_exception(genre)
 
@@ -37,13 +37,26 @@ async def update_genre(
         genre: AnimeGenreCreate,
         db: AsyncIOMotorClient = Depends(get_main_mongo_db)
 ) -> AnimeGenre:
-    return await crud_update_genre(db, genre)
+    result = await update_mongo_model(db, genre)
+    new_genre = AnimeGenre(**result)
+    return new_genre
+
+
+@anime_router.delete("/delete_genre")
+async def delete_genre(genre: AnimeGenre, db: AsyncIOMotorClient=Depends(get_main_mongo_db)) -> JSONResponse:
+    await delete_mongo_model(db, genre)
+    return JSONResponse(
+        status_code=200,
+        content={}
+    )
 
 
 @anime_router.post("/create_tag", response_model=AnimeTag)
 async def create_tag(tag: AnimeTagCreate, db: AsyncIOMotorClient = Depends(get_main_mongo_db)) -> AnimeTag:
     try:
-        return await crud_create_tag(db, tag)
+        result = await create_mongo_model(db, tag)
+        new_tag = AnimeTag(**result)
+        return new_tag
     except DuplicateKeyError:
         raise_insert_duplicated_instance_exception(tag)
 
@@ -54,7 +67,9 @@ async def create_category(
         db: AsyncIOMotorClient = Depends(get_main_mongo_db)
 ) -> AnimeCategory:
     try:
-        return await crud_create_category(db, category)
+        result = await create_mongo_model(db, category)
+        new_category = AnimeCategory(**result)
+        return new_category
     except DuplicateKeyError:
         raise_insert_duplicated_instance_exception(category)
 
@@ -65,7 +80,9 @@ async def create_studio(
         db: AsyncIOMotorClient = Depends(get_main_mongo_db)
 ) -> AnimeStudio:
     try:
-        return await crud_create_studio(db, studio)
+        result = await create_mongo_model(db, studio)
+        new_studio = AnimeStudio(**result)
+        return new_studio
     except DuplicateKeyError:
         raise_insert_duplicated_instance_exception(studio)
 
@@ -76,7 +93,9 @@ async def create_season(
         db: AsyncIOMotorClient = Depends(get_main_mongo_db)
 ) -> Season:
     try:
-        return await crud_create_season(db, season)
+        result = await create_mongo_model(db, season)
+        new_season = Season(**result)
+        return new_season
     except DuplicateKeyError:
         raise_insert_duplicated_instance_exception(season)
 

@@ -2,10 +2,10 @@ from enum import Enum
 
 
 class TimesOfYear(Enum):
-    winter = 1
-    spring = 2
-    summer = 3
-    autumn = 4
+    winter = "Winter"
+    spring = "Sprint"
+    summer = "Summer"
+    autumn = "Autumn"
 
 
 class AnimeStatus(Enum):

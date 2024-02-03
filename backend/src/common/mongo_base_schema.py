@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 class MongoBase(BaseModel):
     id: Any
+    __table_name__: str
 
     def model_dump_for_mongo(self) -> dict[str, Any]:
         dump = self.model_dump()
@@ -12,3 +13,6 @@ class MongoBase(BaseModel):
             dump["_id"] = dump.pop("id")
 
         return dump
+
+    def get_table_name(self) -> str:
+        return self.__table_name__

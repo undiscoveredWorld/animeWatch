@@ -7,6 +7,8 @@ from common.mongo_base_schema import MongoBase
 
 
 class AnimeGenreBase(MongoBase):
+    __table_name__ = "genres"
+
     name: str
     description: str
 
@@ -21,6 +23,8 @@ class AnimeGenre(AnimeGenreBase):
 
 
 class AnimeTagBase(MongoBase):
+    __table_name__ = "tags"
+
     name: str
     description: str
 
@@ -35,6 +39,8 @@ class AnimeTag(AnimeTagBase):
 
 
 class AnimeCategoryBase(MongoBase):
+    __table_name__ = "categories"
+
     name: str
     description: str
 
@@ -49,6 +55,8 @@ class AnimeCategory(AnimeCategoryBase):
 
 
 class AnimeStudioBase(MongoBase):
+    __table_name__ = "studios"
+
     name: str
     description: str
 
@@ -63,8 +71,13 @@ class AnimeStudio(AnimeStudioBase):
 
 
 class SeasonBase(MongoBase):
+    __table_name__ = "seasons"
+
     year: int
     time_of_year: TimesOfYear
+
+    class Config:
+        use_enum_values = True
 
 
 class SeasonCreate(SeasonBase):
