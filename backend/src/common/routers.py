@@ -11,13 +11,13 @@ from anime.crud import (
     update_mongo_model,
     delete_mongo_model
 )
-from .mongo_base_schema import MongoBase
 from .main_mongo_db import get_main_mongo_db
+from .mongo_base_schema import MongoBase
 from .errors import InsertDuplicateInstanceException
 
 
 ModelTypesForGeneratingRouters = namedtuple(
-    "ModelTypesForGeneratingRouters",
+    typename="ModelTypesForGeneratingRouters",
     field_names=[
         "model_type_for_create",
         "model_type_for_update",
@@ -32,39 +32,52 @@ class RouterGenerator:
     def __init__(self, router: APIRouter):
         self.router = router
 
-    def generate_all_routers(self, path: str, model_types: ModelTypesForGeneratingRouters):
-        self.generate_create_router(path, model_types.model_type_for_create)
-        self.generate_update_router(path, model_types.model_type_for_update)
-        self.generate_delete_router(path, model_types.model_type_for_delete)
+    def generate_all_end_points(self, path: str, model_types: ModelTypesForGeneratingRouters):
+        self.generate_create_end_point(path, model_types.model_type_for_create)
+        self.generate_update_end_point(path, model_types.model_type_for_update)
+        self.generate_delete_end_point(path, model_types.model_type_for_delete)
 
-    def generate_create_router(self, path: str, model_type: Type[MongoBase]):
-        @self.router.post(path, tags=["Create"])
+    def generate_create_end_point(self, path: str, model_type: Type[MongoBase]) -> None:
+        @self.router.post(
+            path,
+            tags=["Create"],
+            responses={
+                "400": {"description": f"Cannot create a new {model_type.__name__}"},
+                "200": {"description": f"Success create {model_type.__name__}"}
+            }
+        )
         async def create(
                 model: model_type,
-                db: AsyncIOMotorClient = Depends(get_main_mongo_db)) -> JSONResponse:
-            try:
-                await create_mongo_model(db, model)
-                return JSONResponse(
-                    status_code=201,
-                    content={}
-                )
-            except DuplicateKeyError:
-                raise_insert_duplicated_instance_exception(model)
+                db: AsyncIOMotorClient = Depends(get_main_mongo_db)
+        ) -> JSONResponse:
+            return await _try_create_mongo_model(db, model)
 
-    def generate_update_router(self, path: str, model_type: Type[MongoBase]):
-        @self.router.put(path, tags=["Update"])
+    def generate_update_end_point(self, path: str, model_type: Type[MongoBase]):
+        @self.router.put(
+            path,
+            tags=["Update"],
+            responses={
+                "200": {"description": f"Success update {model_type.__name__}"}
+            }
+        )
         async def update(
                 model: model_type,
                 db: AsyncIOMotorClient = Depends(get_main_mongo_db)
         ) -> JSONResponse:
             await update_mongo_model(db, model)
             return JSONResponse(
-                status_code=201,
+                status_code=200,
                 content={}
             )
 
-    def generate_delete_router(self, path: str, model_type: Type[MongoBase]):
-        @self.router.delete(path, tags=["Delete"])
+    def generate_delete_end_point(self, path: str, model_type: Type[MongoBase]):
+        @self.router.delete(
+            path,
+            tags=["Delete"],
+            responses={
+                "200": {"description": f"Success delete {model_type.__name__}"}
+            }
+        )
         async def delete(
                 model: model_type,
                 db: AsyncIOMotorClient = Depends(get_main_mongo_db)
@@ -74,6 +87,17 @@ class RouterGenerator:
                 status_code=200,
                 content={}
             )
+
+
+async def _try_create_mongo_model(db: AsyncIOMotorClient, model: MongoBase) -> JSONResponse:
+    try:
+        await create_mongo_model(db, model)
+        return JSONResponse(
+            status_code=201,
+            content={}
+        )
+    except DuplicateKeyError:
+        raise_insert_duplicated_instance_exception(model)
 
 
 def create_model_types(

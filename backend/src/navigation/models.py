@@ -8,5 +8,5 @@ class NavigationElement(Base):
 
     id = Column(Integer, primary_key=True, unique=True, autoincrement=True, nullable=False)
     name = Column(String, nullable=False, unique=True)
-    description = Column(String)
+    description = Column(String, nullable=False)
     url = Column(String, nullable=False, default="#")

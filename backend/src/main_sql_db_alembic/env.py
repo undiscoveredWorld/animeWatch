@@ -4,9 +4,8 @@ from logging.config import fileConfig
 
 from alembic import context
 
-from models.database.db import Base
-import models.database.models.navigation
-import models.database.models.anime
+from common.main_sql_db import Base
+import navigation.models
 
 NAME_OF_DB_URL_ENV_VARIABLE = "MAIN_SQL_DB_URL"
 

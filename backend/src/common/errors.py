@@ -1,3 +1,6 @@
+"""
+errors storages custom exceptions
+"""
 from typing import Any
 
 
@@ -20,4 +23,8 @@ class LocatedException(CustomExceptionBase):
 
 
 class InsertDuplicateInstanceException(LocatedException):
+    pass
+
+
+class TimeOutException(CustomExceptionBase):
     pass

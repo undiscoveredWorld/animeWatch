@@ -7,7 +7,7 @@ from .filler import fill_main_sql_db_by_debug_rows
 from .clearer import clear_main_sql_db
 
 
-filler_router = APIRouter()
+filler_router = APIRouter(tags=["Filler"])
 
 
 @filler_router.post("/fill")

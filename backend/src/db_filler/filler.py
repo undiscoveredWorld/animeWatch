@@ -2,7 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import insert
 
 from navigation.models import NavigationElement as NavigationElementModel
-from navigation.schemes import NavigationElementCreate as NavigationElementSchemeCreate
+from navigation.schemas import NavigationElementCreate as NavigationElementSchemeCreate
 
 
 def fill_main_sql_db_by_debug_rows(db: Session) -> None:
