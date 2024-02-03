@@ -20,7 +20,7 @@ class AnimeGenre(AnimeGenreBase):
         from_attributes = True
 
 
-class AnimeTagBase(BaseModel):
+class AnimeTagBase(MongoBase):
     name: str
     description: str
 
@@ -30,9 +30,6 @@ class AnimeTagCreate(AnimeTagBase):
 
 
 class AnimeTag(AnimeTagBase):
-    id: int
-    all_anime: list["Anime"]
-
     class Config:
         from_attributes = True
 
