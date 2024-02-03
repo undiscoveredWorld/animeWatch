@@ -34,7 +34,7 @@ class AnimeTag(AnimeTagBase):
         from_attributes = True
 
 
-class AnimeCategoryBase(BaseModel):
+class AnimeCategoryBase(MongoBase):
     name: str
     description: str
 
@@ -44,14 +44,11 @@ class AnimeCategoryCreate(AnimeCategoryBase):
 
 
 class AnimeCategory(AnimeCategoryBase):
-    id: int
-    all_anime: list["Anime"]
-
     class Config:
         from_attributes = True
 
 
-class AnimeStudioBase(BaseModel):
+class AnimeStudioBase(MongoBase):
     name: str
     description: str
 
@@ -61,14 +58,11 @@ class AnimeStudioCreate(AnimeStudioBase):
 
 
 class AnimeStudio(AnimeStudioBase):
-    id: int
-    all_anime: list["Anime"]
-
     class Config:
         from_attributes = True
 
 
-class SeasonBase(BaseModel):
+class SeasonBase(MongoBase):
     year: int
     time_of_year: TimesOfYear
 
@@ -78,9 +72,6 @@ class SeasonCreate(SeasonBase):
 
 
 class Season(SeasonBase):
-    id: int
-    all_anime: list["Anime"]
-
     class Config:
         from_attributes = True
 
