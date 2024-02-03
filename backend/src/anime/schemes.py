@@ -1,13 +1,12 @@
 from datetime import datetime
 from pydantic import BaseModel
-from typing import Any
-from bson.objectid import ObjectId
 
 from anime.enums import TimesOfYear, AnimeStatus
 from auth.schemes import User
+from common.mongo_base_schema import MongoBase
 
 
-class AnimeGenreBase(BaseModel):
+class AnimeGenreBase(MongoBase):
     name: str
     description: str
 
@@ -17,8 +16,6 @@ class AnimeGenreCreate(AnimeGenreBase):
 
 
 class AnimeGenre(AnimeGenreBase):
-    id: Any
-
     class Config:
         from_attributes = True
 
