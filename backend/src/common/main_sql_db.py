@@ -5,13 +5,12 @@ from sqlalchemy.orm import sessionmaker
 from settings import MAIN_SQL_DB_URL
 
 main_sql_engine = create_engine(MAIN_SQL_DB_URL)
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=main_sql_engine)
-
+MainSQLSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=main_sql_engine)
 Base = declarative_base()
 
 
-def get_db():
-    db = SessionLocal()
+def get_main_sql_db():
+    db = MainSQLSessionLocal()
     try:
         yield db
     finally:
