@@ -1,8 +1,9 @@
 from datetime import datetime
+from typing import Any, List
+
 from pydantic import BaseModel
 
 from anime.enums import TimesOfYear, AnimeStatus
-from auth.schemas import User
 from common.mongo_base_schema import MongoBase
 
 
@@ -89,7 +90,9 @@ class Season(SeasonBase):
         from_attributes = True
 
 
-class AnimeBase(BaseModel):
+class AnimeBase(MongoBase):
+    __table_name__ = "anime"
+
     original_name: str
     english_name: str
     russian_name: str
@@ -101,10 +104,17 @@ class AnimeBase(BaseModel):
     duration_of_series: str
     age_restriction: str
 
-    publisher: User
-    category: AnimeCategory
-    studio: AnimeStudio
-    season: Season
+    publisher_id: int
+    category_id: Any
+    studio_id: Any
+    season_id: Any
+
+    genres_id: List[Any]
+    tags_id: List[Any]
+    anime_seasons_id: List[Any]
+
+    class Config:
+        use_enum_values = True
 
 
 class AnimeCreate(AnimeBase):
@@ -112,11 +122,6 @@ class AnimeCreate(AnimeBase):
 
 
 class Anime(AnimeBase):
-    id: int
-    genres: list[AnimeGenre]
-    tags: list[AnimeTag]
-    seasons: list["SeasonOfAnime"]
-
     class Config:
         from_attributes = True
 

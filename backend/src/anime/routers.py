@@ -7,6 +7,7 @@ from .schemas import AnimeTagCreate, AnimeTag
 from .schemas import AnimeCategoryCreate, AnimeCategory
 from .schemas import AnimeStudioCreate, AnimeStudio
 from .schemas import SeasonCreate, Season
+from .schemas import AnimeCreate, Anime
 
 anime_router = APIRouter(tags=["Anime"])
 generator = RouterGenerator(anime_router)
@@ -25,3 +26,6 @@ generator.generate_all_end_points("/studio", studio_models)
 
 season_models = create_model_types(SeasonCreate, SeasonCreate, Season)
 generator.generate_all_end_points("/season", season_models)
+
+anime_models = create_model_types(AnimeCreate, AnimeCreate, Anime)
+generator.generate_all_end_points("/anime", anime_models)
